@@ -1,6 +1,10 @@
 import React, { Component, PureComponent } from "react";
 import { useQuery } from '@apollo/client';
-import { ALL_PRODUCTS } from "./appolo/products";
+import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
+
+import { ALL_PRODUCTS } from "./apollo/products";
+import Home from "./components/Home";
+import Navbar from "./components/Navbar";
 
 export default function App() {
   const { loading, error, data } = useQuery(ALL_PRODUCTS);
@@ -13,21 +17,13 @@ export default function App() {
     return <h2>Error</h2>
   }
 
-  console.log(data.categories[0].products)
-
   return (
-    <div>
-      {data.categories[0].products.map((product) => {
-        return (
-          <div key={product.id}>
-            <img src={product.gallery[0]} alt="" />
-            <h2>{product.name}</h2>
-            <p>{product.prices[0].amount}{product.prices[0].currency.label}</p>
-
-          </div>
-        )
-      })}
-    </div>
-  );
+    <Router>
+      <Navbar />
+      <Routes>
+        <Route path="/" element={<Home />} />
+      </Routes>
+    </Router>
+  )
 }
 

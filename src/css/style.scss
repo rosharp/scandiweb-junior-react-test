@@ -1,0 +1,21 @@
+@import url('https://fonts.googleapis.com/css2?family=Epilogue:wght@500;700&display=swap');
+
+$Epilogue: "Epilogue",
+sans-serif;
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+.products {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 5rem;
+
+  img {
+    max-width: 10rem;
+    object-fit: contain;
+  }
+}
