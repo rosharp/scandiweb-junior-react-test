@@ -16,15 +16,16 @@ class Products extends Component {
                             <div key={product.id} >
                                 <img src={product.gallery[0]} alt="" />
                                 <h2>{product.name}</h2>
-                                <p>{product.prices[0].amount}{product.prices[0].currency.label}</p>
+                                {product.prices.filter(price => price.currency.label === this.props.currency).map(price => {
+                                    return (
+                                        <p>{price.amount}<span>{price.currency.symbol}</span></p>
+                                    )
+                                })}
                             </div>
                         </Link>
 
                     );
                 })}
-
-                {/* {console.log(data.categories.filter(category => this.props.category === category.name)[0].products)} */}
-
             </div>
         );
 

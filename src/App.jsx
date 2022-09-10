@@ -12,10 +12,14 @@ export default function App() {
   const { loading, error, data } = useQuery(ALL_PRODUCTS);
   const context = useContext(ProductsContext);
   const [category, setCategory] = useState("all");
+  const [currency, setCurrency] = useState("USD");
 
   function handleClick(e) {
-    console.log(e.target.innerHTML)
-    setCategory(e.target.innerHTML)
+    setCategory(e.target.innerHTML);
+  }
+
+  function handleCurrency(e) {
+    setCurrency(e.target.innerHTML);
   }
 
   if (loading) {
@@ -30,9 +34,15 @@ export default function App() {
 
   return (
     <Router>
-      <Navbar setCategory={handleClick} category={category} />
+      <Navbar
+        setCategory={handleClick}
+        category={category}
+        setCurrency={handleCurrency}
+        currency={currency}
+      />
+
       <Routes>
-        <Route path="/" element={<Home category={category} />} />
+        <Route path="/" element={<Home category={category} currency={currency} />} />
 
         {data.categories.filter(category => category.name === "all")[0].products.map((product, index) => {
           return (
@@ -51,7 +61,6 @@ export default function App() {
             />
           );
         })}
-
       </Routes>
     </Router>
   )

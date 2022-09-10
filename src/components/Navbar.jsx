@@ -3,6 +3,8 @@ import { Link } from 'react-router-dom'
 import withQuery from "../apollo/data";
 import { ProductsContext } from "./ProductsContext";
 
+import CurrencyDropdown from "./CurrencyDropdown";
+
 class Navbar extends Component {
 
     static contextType = ProductsContext
@@ -24,15 +26,14 @@ class Navbar extends Component {
 
         return (
             <nav>
-                <p>{this.props.category}</p>
                 {data.categories.map((item, index) => {
                     return (
                         <Link key={index} to="/" value={item.name} onClick={this.props.setCategory}>{item.name}</Link>
                     )
                 })}
+
+                <CurrencyDropdown setCurrency={this.props.setCurrency} />
             </nav>
-
-
         );
     }
 }
