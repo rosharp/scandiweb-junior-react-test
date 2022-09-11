@@ -22,7 +22,6 @@ class Navbar extends Component {
 
     render() {
         const data = this.props.dataValue;
-        const category = this.state.category;
 
         return (
             <nav>
@@ -32,7 +31,7 @@ class Navbar extends Component {
                     )
                 })}
 
-                <CurrencyDropdown setCurrency={this.props.setCurrency} />
+                <CurrencyDropdown currency={this.props.currency} setCurrency={this.props.setCurrency} />
             </nav>
         );
     }

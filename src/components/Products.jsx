@@ -10,15 +10,15 @@ class Products extends Component {
 
         return (
             <div className="products" >
-                {data.categories.filter(category => category.name === this.props.category)[0].products.map(product => {
+                {data.categories.filter(category => category.name === this.props.category)[0].products.map((product, index) => {
                     return (
-                        <Link to={"/products/" + product.id}>
-                            <div key={product.id} >
+                        <Link key={index} to={"/products/" + product.id}>
+                            <div>
                                 <img src={product.gallery[0]} alt="" />
                                 <h2>{product.name}</h2>
-                                {product.prices.filter(price => price.currency.label === this.props.currency).map(price => {
+                                {product.prices.filter(price => price.currency.label === this.props.currency).map((price, index) => {
                                     return (
-                                        <p>{price.amount}<span>{price.currency.symbol}</span></p>
+                                        <p key={index}>{price.amount}<span>{price.currency.symbol}</span></p>
                                     )
                                 })}
                             </div>
