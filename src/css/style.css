@@ -5,6 +5,26 @@
   box-sizing: border-box;
 }
 
+.product-img-container {
+  display: flex;
+  flex-direction: row;
+}
+.product-img-container .img-active {
+  display: flex;
+  justify-content: flex-end;
+  width: 20rem;
+  margin-left: 2rem;
+}
+.product-img-container .img-inactive {
+  display: flex;
+  justify-content: flex-start;
+  flex-direction: column;
+  width: 3rem;
+}
+.product-img-container .product-img {
+  max-width: 20rem;
+}
+
 .products {
   display: flex;
   flex-wrap: wrap;
