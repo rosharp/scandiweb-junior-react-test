@@ -54,8 +54,10 @@ export default function App() {
                   name={product.name}
                   brand={product.brand}
                   category={product.category}
+                  attributes={product.attributes}
                   description={product.description}
                   gallery={product.gallery}
+                  inStock={product.inStock}
                 />
               }
             />
