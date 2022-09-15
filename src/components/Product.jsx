@@ -4,9 +4,19 @@ import parse from "html-react-parser";
 export default class Product extends Component {
   constructor(props) {
     super(props);
+
     this.toggleActive = this.toggleActive.bind(this);
+    this.handleSizeOrCapacity = this.handleSizeOrCapacity.bind(this);
+    this.handleColor = this.handleColor.bind(this);
+    this.handlePorts = this.handlePorts.bind(this);
+    this.handleTouchId = this.handleTouchId.bind(this);
+
     this.state = {
       activeImg: 0,
+      name: this.props.name,
+      brand: this.props.brand,
+      prices: this.props.prices,
+      chars: {}, 
     };
   }
 
@@ -14,36 +24,70 @@ export default class Product extends Component {
     this.setState({ activeImg: parseInt(e.target.id) });
   }
 
-//   fetchAtt(char, addChar) {
-//     return (
-//       <div className={`${char} ${addChar ? "-" + {addChar} : ""}att`}>
-//         <h3>
-//           {this.props.attributes
-//             .filter((att) => att.name === {char})
-//             .map((att) => att.name)}
-//         </h3>
-//         {this.props.attributes
-//           .filter((att) => att.name === "Size" || att.name === "Capacity")
-//           .map((att) =>
-//             att.items.map((att) => {
-//               return (
-//                 <div key={att.id} className="product-chars">
-//                   <div className="product-size">
-//                     <input
-//                       type="radio"
-//                       id={att.id}
-//                       name="size-capacity"
-//                       value={att.value}
-//                     />
-//                     <label htmlFor={att.id}>{att.value}</label>
-//                   </div>
-//                 </div>
-//               );
-//             })
-//           )}
-//       </div>
-//     );
-//   }
+  handleSizeOrCapacity(e) {
+    this.setState({
+      ...this.state,
+      chars: { ...this.state.chars, sizeCapacity: e.target.value },
+    });
+  }
+
+  handleColor(e) {
+    this.setState({
+      ...this.state,
+      chars: { ...this.state.chars, color: e.target.value },
+    });
+  }
+
+  handlePorts(e) {
+    this.setState({
+      ...this.state,
+      chars: {
+        ...this.state.chars,
+        ports: e.target.value === "Yes" ? true : false,
+      },
+    });
+  }
+
+  handleTouchId(e) {
+    this.setState({
+      ...this.state,
+      chars: {
+        ...this.state.chars,
+        touchId: e.target.value === "Yes" ? true : false,
+      },
+    });
+  }
+
+  //   fetchAtt(char, addChar) {
+  //     return (
+  //       <div className={`${char} ${addChar ? "-" + {addChar} : ""}att`}>
+  //         <h3>
+  //           {this.props.attributes
+  //             .filter((att) => att.name === {char})
+  //             .map((att) => att.name)}
+  //         </h3>
+  //         {this.props.attributes
+  //           .filter((att) => att.name === "Size" || att.name === "Capacity")
+  //           .map((att) =>
+  //             att.items.map((att) => {
+  //               return (
+  //                 <div key={att.id} className="product-chars">
+  //                   <div className="product-size">
+  //                     <input
+  //                       type="radio"
+  //                       id={att.id}
+  //                       name="size-capacity"
+  //                       value={att.value}
+  //                     />
+  //                     <label htmlFor={att.id}>{att.value}</label>
+  //                   </div>
+  //                 </div>
+  //               );
+  //             })
+  //           )}
+  //       </div>
+  //     );
+  //   }
 
   render() {
     return (
@@ -84,7 +128,6 @@ export default class Product extends Component {
         <div className="product-props">
           <h1>{this.props.brand}</h1>
           <h2>{this.props.name}</h2>
-
           <div className="size-capacity-att">
             <h3>
               {this.props.attributes
@@ -103,6 +146,7 @@ export default class Product extends Component {
                           id={att.id}
                           name="size-capacity"
                           value={att.value}
+                          onChange={this.handleSizeOrCapacity}
                         />
                         <label htmlFor={att.id}>{att.value}</label>
                       </div>
@@ -129,6 +173,7 @@ export default class Product extends Component {
                           id={att.id}
                           name="color"
                           value={att.value}
+                          onChange={this.handleColor}
                         />
                         <label htmlFor={att.id}>{att.value}</label>
                       </div>
@@ -156,6 +201,7 @@ export default class Product extends Component {
                           id={att.id}
                           name="usb3"
                           value={att.value}
+                          onChange={this.handlePorts}
                         />
                         <label htmlFor={att.id}>{att.value}</label>
                       </div>
@@ -183,6 +229,7 @@ export default class Product extends Component {
                           id={att.id}
                           name="touchid"
                           value={att.value}
+                          onChange={this.handleTouchId}
                         />
                         <label htmlFor={att.id}>{att.value}</label>
                       </div>
@@ -191,6 +238,21 @@ export default class Product extends Component {
                 })
               )}
           </div>
+
+          {this.props.prices
+            .filter((price) => price.currency.label === this.props.currency)
+            .map((price, index) => {
+              return (
+                <p key={index}>
+                  {price.amount}
+                  <span>{price.currency.symbol}</span>
+                </p>
+              );
+            })}
+
+          <button onClick={() => this.props.onAdd(this.state)}>
+            Add To Cart
+          </button>
 
           {parse(this.props.description)}
         </div>

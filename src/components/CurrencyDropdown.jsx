@@ -12,7 +12,6 @@ class CurrencyDropdown extends Component {
 
     handleChange() {
         this.setState({ showCurrencySwitch: this.state.showCurrencySwitch ? false : true })
-        console.log("showSwitch:", this.state.showCurrencySwitch)
     }
 
     render() {
