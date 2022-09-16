@@ -64,7 +64,6 @@ export default function App() {
         (item) => item.name === product.name && item.chars === product.chars
     );
 
-
     if (exist) {
       setCartItems(
         cartItems.map((item) =>
@@ -74,6 +73,15 @@ export default function App() {
         )
       );
     }
+  }
+
+  function onCartItemDelete(product) {
+    setCartItems(
+        cartItems.filter((item) => {
+              return item.name !== product.name && item.chars !== product.chars
+            }
+        )
+    );
   }
 
   if (loading) {
@@ -108,6 +116,7 @@ export default function App() {
               currency={currency}
               onQtyDecrease={onQtyDecrease}
               onQtyIncrease={onQtyIncrease}
+              onCartItemDelete={onCartItemDelete}
           />
         }
         />

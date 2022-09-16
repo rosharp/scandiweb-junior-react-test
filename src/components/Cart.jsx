@@ -32,6 +32,8 @@ export default class Cart extends Component {
                 <button className="decrease-qty" onClick={() => this.props.onQtyDecrease(item)}>-</button>
                 <p>{item.qty}</p>
                 <button className="increase-qty" onClick={() => this.props.onQtyIncrease(item)}>+</button>
+                <br />
+                <button className="remove-cart-item" onClick={() => this.props.onCartItemDelete(item)}>Remove</button>
               </div>
             </div>
           );
