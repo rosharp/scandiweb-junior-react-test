@@ -78,7 +78,7 @@ export default function App() {
   function onCartItemDelete(product) {
     setCartItems(
         cartItems.filter((item) => {
-              return item.name !== product.name && item.chars !== product.chars
+              return item.index !== product.index
             }
         )
     );

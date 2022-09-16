@@ -16,7 +16,8 @@ export default class Product extends Component {
       name: this.props.name,
       brand: this.props.brand,
       prices: this.props.prices,
-      chars: {}, 
+      chars: {},
+      index: 0,
     };
   }
 
@@ -219,7 +220,7 @@ export default class Product extends Component {
               );
             })}
 
-          <button onClick={() => this.props.onAdd(this.state)}>
+          <button onClick={() => this.props.onAdd(this.state, this.state.index++)}>
             Add To Cart
           </button>
 
