@@ -13,32 +13,25 @@ export default class Cart extends Component {
       <div>
         <h1>Cart</h1>
         {this.props.cart.map((item, index) => {
-          console.log("chars:", item.chars)
           return (
             <div key={index}>
               <div>
                 <h2>{item.brand}</h2>
                 <h3>{item.name}</h3>
-                {Object.keys(item.chars).map((char) => {
+                {Object.entries(item.chars).map(([char, value], index) => {
                   return (
-                    <div>
+                    <div key={index}>
                       {
-                        char === "color"
-                        ? <p>Color: {char}</p>
-                        : char === "sizeCapacity"
-                        ? <p>Capacity/Size: {char}</p>
-                        : char === "ports"
-                        ? <p>Ports: {char}</p> 
-                        : char === "touchId"
-                        ? <p>TouchID: {char}</p>
-                        : <p>Some other char: {char}</p>
+                          <p>{char}: {value}</p>
                       }
                     </div>
                   );
                 })}
               </div>
-              <div>
+              <div className="qty-container">
+                <button className="decrease-qty" onClick={() => this.props.onQtyDecrease(item)}>-</button>
                 <p>{item.qty}</p>
+                <button className="increase-qty" onClick={() => this.props.onQtyIncrease(item)}>+</button>
               </div>
             </div>
           );

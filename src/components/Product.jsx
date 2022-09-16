@@ -27,14 +27,14 @@ export default class Product extends Component {
   handleSizeOrCapacity(e) {
     this.setState({
       ...this.state,
-      chars: { ...this.state.chars, sizeCapacity: e.target.value },
+      chars: { ...this.state.chars, "Size": e.target.value },
     });
   }
 
   handleColor(e) {
     this.setState({
       ...this.state,
-      chars: { ...this.state.chars, color: e.target.value },
+      chars: { ...this.state.chars, "Color": e.target.value },
     });
   }
 
@@ -43,7 +43,7 @@ export default class Product extends Component {
       ...this.state,
       chars: {
         ...this.state.chars,
-        ports: e.target.value === "Yes" ? true : false,
+        "USB-3 Ports": e.target.value === "Yes" ? "Yes" : "No",
       },
     });
   }
@@ -53,41 +53,10 @@ export default class Product extends Component {
       ...this.state,
       chars: {
         ...this.state.chars,
-        touchId: e.target.value === "Yes" ? true : false,
+        "TouchID": e.target.value === "Yes" ? "Yes" : "No",
       },
     });
   }
-
-  //   fetchAtt(char, addChar) {
-  //     return (
-  //       <div className={`${char} ${addChar ? "-" + {addChar} : ""}att`}>
-  //         <h3>
-  //           {this.props.attributes
-  //             .filter((att) => att.name === {char})
-  //             .map((att) => att.name)}
-  //         </h3>
-  //         {this.props.attributes
-  //           .filter((att) => att.name === "Size" || att.name === "Capacity")
-  //           .map((att) =>
-  //             att.items.map((att) => {
-  //               return (
-  //                 <div key={att.id} className="product-chars">
-  //                   <div className="product-size">
-  //                     <input
-  //                       type="radio"
-  //                       id={att.id}
-  //                       name="size-capacity"
-  //                       value={att.value}
-  //                     />
-  //                     <label htmlFor={att.id}>{att.value}</label>
-  //                   </div>
-  //                 </div>
-  //               );
-  //             })
-  //           )}
-  //       </div>
-  //     );
-  //   }
 
   render() {
     return (

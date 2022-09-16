@@ -26,10 +26,8 @@ export default function App() {
 
   function onAdd(product) {
     const exist = cartItems.find(
-      (item) => item.name === product.name && item.chars === product.chars
+        (item) => item.name === product.name && item.chars === product.chars
     );
-
-    console.log(exist)
 
     if (exist) {
       setCartItems(
@@ -41,6 +39,40 @@ export default function App() {
       );
     } else {
       setCartItems([...cartItems, { ...product, qty: 1 }]);
+    }
+  }
+
+  function onQtyIncrease(product) {
+    console.log(product)
+    const exist = cartItems.find(
+        (item) => item.name === product.name && item.chars === product.chars
+    );
+
+    if (exist) {
+      setCartItems(
+        cartItems.map((item) =>
+          item.name === product.name && item.chars === product.chars
+            ? { ...exist, qty: exist.qty + 1 }
+            : item
+        )
+      );
+    }
+  }
+
+  function onQtyDecrease(product) {
+    const exist = cartItems.find(
+        (item) => item.name === product.name && item.chars === product.chars
+    );
+
+
+    if (exist) {
+      setCartItems(
+        cartItems.map((item) =>
+          item.name === product.name && item.chars === product.chars
+            ? { ...exist, qty: parseInt(`${exist.qty > 1 ? exist.qty - 1 : 1}`) }
+            : item
+        )
+      );
     }
   }
 
@@ -69,7 +101,15 @@ export default function App() {
 
         <Route
           path="/cart"
-          element={<Cart cart={cartItems} onAdd={onAdd} currency={currency} />}
+          element={
+          <Cart
+              cart={cartItems}
+              onAdd={onAdd}
+              currency={currency}
+              onQtyDecrease={onQtyDecrease}
+              onQtyIncrease={onQtyIncrease}
+          />
+        }
         />
 
         {data.categories
@@ -92,6 +132,8 @@ export default function App() {
                     prices={product.prices}
                     cart={cartItems}
                     onAdd={onAdd}
+
+
                   />
                 }
               />
