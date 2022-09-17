@@ -1,8 +1,94 @@
-@import url("https://fonts.googleapis.com/css2?family=Epilogue:wght@500;700&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Raleway:wght@300;400;500;600&family=Roboto&family=Roboto+Condensed:wght@400;700&family=Source+Sans+Pro&display=swap");
 *,
 *::before,
 *::after {
   box-sizing: border-box;
+}
+
+a,
+h1,
+h2,
+h3,
+label,
+li {
+  font-family: "Raleway", sans-serif;
+  color: #1d1f22;
+}
+
+h1,
+h2,
+h3 {
+  line-height: 160%;
+}
+
+h1 {
+  font-weight: 400;
+  font-size: 42px;
+}
+
+h3 {
+  font-size: 18px;
+  font-weight: 300;
+}
+
+a {
+  text-decoration: none;
+}
+
+p {
+  font-family: "Roboto", sans-serif;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 159.96%;
+}
+
+li {
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 120%;
+}
+
+label {
+  font-weight: 500;
+  font-size: 18px;
+  line-height: 160%;
+  text-align: right;
+  flex: none;
+}
+
+body {
+  background-color: #f8f8f9;
+}
+
+nav {
+  display: flex;
+  text-transform: uppercase;
+}
+nav .nav-end {
+  display: flex;
+  justify-content: flex-end;
+  margin-inline: auto;
+}
+nav .currency-dropdown .currency-dropdown-list {
+  position: absolute;
+  background-color: #ffffff;
+  filter: drop-shadow(0 0.2rem 0.1rem rgba(0, 0, 0, 0.025));
+  list-style: none;
+  padding-inline-start: 0;
+}
+nav .currency-dropdown .currency-dropdown-list span {
+  padding-inline-start: 0.2rem;
+}
+nav .currency-dropdown .currency-dropdown-list > * {
+  padding-inline: 1rem;
+  padding-block: 0.5rem;
+}
+nav > * {
+  margin-inline: 1rem;
+}
+
+.category-title {
+  text-transform: capitalize;
 }
 
 .product-img-container {
@@ -26,13 +112,27 @@
 }
 
 .products {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 5rem;
+  display: grid;
 }
 .products img {
-  max-width: 10rem;
-  object-fit: contain;
+  object-fit: cover;
+}
+
+@media (min-width: 1000px) {
+  body {
+    background-color: #f8f8f9;
+    max-width: 50vw;
+    justify-content: center;
+    margin-inline: auto;
+  }
+  .products {
+    grid-template-columns: 15rem 15rem 15rem;
+    gap: 2rem;
+  }
+  .products img {
+    width: clamp(5rem, 15vw, 15rem);
+    height: clamp(5rem, 30vh, 15rem);
+  }
 }
 
 /*# sourceMappingURL=style.css.map */

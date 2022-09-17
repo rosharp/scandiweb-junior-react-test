@@ -17,11 +17,11 @@ class CurrencyDropdown extends Component {
     render() {
         const data = this.props.dataValue;
         return (
-            <div>
-                <p onClick={this.handleChange}>$</p>
+            <div className="currency-dropdown">
+                <button onClick={this.handleChange}>$</button>
                 {this.state.showCurrencySwitch ?
                     (
-                        <ul>
+                        <ul className="currency-dropdown-list">
                             {data.categories[0].products[0].prices.map((p, index) => {
                                 return (
                                     <li key={index}>

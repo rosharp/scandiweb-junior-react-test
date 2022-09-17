@@ -15,10 +15,10 @@ class Products extends Component {
                         <Link key={index} to={"/products/" + product.id}>
                             <div>
                                 <img src={product.gallery[0]} alt="" />
-                                <h2>{product.name}</h2>
+                                <h3>{product.name}</h3>
                                 {product.prices.filter(price => price.currency.label === this.props.currency).map((price, index) => {
                                     return (
-                                        <p key={index}>{price.amount}<span>{price.currency.symbol}</span></p>
+                                        <label key={index}>{price.amount}<span>{price.currency.symbol}</span></label>
                                     )
                                 })}
                             </div>

@@ -37,11 +37,13 @@ class Navbar extends Component {
           );
         })}
 
-        <CurrencyDropdown
-          currency={this.props.currency}
-          setCurrency={this.props.setCurrency}
-        />
-        <Link to="cart">Cart</Link>
+        <div className="nav-end">
+          <CurrencyDropdown
+            currency={this.props.currency}
+            setCurrency={this.props.setCurrency}
+          />
+          <Link to="cart">Cart</Link>
+        </div>
       </nav>
     );
   }
