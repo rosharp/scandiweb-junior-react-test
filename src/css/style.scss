@@ -41,6 +41,7 @@ h1 {
 h3 {
   font-size: 18px;
   font-weight: 300;
+  line-height: 0;
 }
 
 a {
@@ -112,6 +113,31 @@ nav {
   text-transform: capitalize;
 }
 
+
+.products {
+  display: grid;  
+
+  img {
+    object-fit: cover;
+  }
+}
+
+.product {
+  transition: 300ms ease-in-out;
+  padding-block: 15px;
+  padding-inline: 15px;
+
+  h3 {
+    margin-top: 1.5rem;
+  }
+
+  &:hover {
+    background-color: $clr-neutral-100;
+    box-shadow: 0px 4px 35px rgba(168, 172, 176, 0.19);
+    transition: 300ms ease-in-out;
+  }
+}
+
 .product-img-container {
   display: flex;
   flex-direction: row;
@@ -135,13 +161,6 @@ nav {
   }
 }
 
-.products {
-  display: grid;  
-
-  img {
-    object-fit: cover;
-  }
-}
 
 @media (min-width: 1000px) {
   body {
@@ -156,8 +175,8 @@ nav {
     gap: 2rem;
 
     img {
-      width: clamp(5rem, 15vw, 15rem);
-      height: clamp(5rem, 30vh, 15rem);
+      width: clamp(5rem, 15.5vw, 15rem);
+      height: clamp(5rem, 35vh, 15rem);
     }
   }
 }

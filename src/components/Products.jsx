@@ -12,7 +12,7 @@ class Products extends Component {
             <div className="products" >
                 {data.categories.filter(category => category.name === this.props.category)[0].products.map((product, index) => {
                     return (
-                        <Link key={index} to={"/products/" + product.id}>
+                        <Link key={index} to={"/products/" + product.id} className="product">
                             <div>
                                 <img src={product.gallery[0]} alt="" />
                                 <h3>{product.name}</h3>
@@ -23,7 +23,6 @@ class Products extends Component {
                                 })}
                             </div>
                         </Link>
-
                     );
                 })}
             </div>
