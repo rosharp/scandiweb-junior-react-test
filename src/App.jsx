@@ -26,7 +26,7 @@ export default function App() {
 
   function onAdd(product) {
     const exist = cartItems.find(
-        (item) => item.name === product.name && item.chars === product.chars
+      (item) => item.name === product.name && item.chars === product.chars
     );
 
     if (exist) {
@@ -43,9 +43,9 @@ export default function App() {
   }
 
   function onQtyIncrease(product) {
-    console.log(product)
+    console.log(product);
     const exist = cartItems.find(
-        (item) => item.name === product.name && item.chars === product.chars
+      (item) => item.name === product.name && item.chars === product.chars
     );
 
     if (exist) {
@@ -61,14 +61,17 @@ export default function App() {
 
   function onQtyDecrease(product) {
     const exist = cartItems.find(
-        (item) => item.name === product.name && item.chars === product.chars
+      (item) => item.name === product.name && item.chars === product.chars
     );
 
     if (exist) {
       setCartItems(
         cartItems.map((item) =>
           item.name === product.name && item.chars === product.chars
-            ? { ...exist, qty: parseInt(`${exist.qty > 1 ? exist.qty - 1 : 1}`) }
+            ? {
+                ...exist,
+                qty: parseInt(`${exist.qty > 1 ? exist.qty - 1 : 1}`),
+              }
             : item
         )
       );
@@ -77,10 +80,9 @@ export default function App() {
 
   function onCartItemDelete(product) {
     setCartItems(
-        cartItems.filter((item) => {
-              return item.index !== product.index
-            }
-        )
+      cartItems.filter((item) => {
+        return item.index !== product.index;
+      })
     );
   }
 
@@ -110,15 +112,15 @@ export default function App() {
         <Route
           path="/cart"
           element={
-          <Cart
+            <Cart
               cart={cartItems}
               onAdd={onAdd}
               currency={currency}
               onQtyDecrease={onQtyDecrease}
               onQtyIncrease={onQtyIncrease}
               onCartItemDelete={onCartItemDelete}
-          />
-        }
+            />
+          }
         />
 
         {data.categories
@@ -141,8 +143,6 @@ export default function App() {
                     prices={product.prices}
                     cart={cartItems}
                     onAdd={onAdd}
-
-
                   />
                 }
               />
