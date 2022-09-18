@@ -127,7 +127,7 @@ body {
   border: none;
   padding: 16px 32px;
   width: 15rem;
-  margin: 0.5rem 0 1rem 0;
+  margin: 0.5rem 0 0 0;
   text-decoration: none;
   text-transform: uppercase;
   background: #5ece7b;
@@ -213,8 +213,9 @@ nav > * {
   padding-top: 5rem;
 }
 .product-container h1 {
-  line-height: 0;
   font-weight: 700;
+  word-wrap: normal;
+  line-height: 1.2;
 }
 .product-container h2 {
   font-weight: 400;
@@ -232,7 +233,7 @@ nav > * {
   display: inline-flex;
 }
 .product-container > * {
-  margin-inline: 1rem;
+  margin-inline: 2rem;
 }
 
 .product-img-container {

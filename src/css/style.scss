@@ -142,7 +142,7 @@ body {
   border: none;
   padding: 16px 32px;
   width: 15rem;
-  margin: .5rem 0 1rem 0 ;
+  margin: .5rem 0 0 0 ;
   text-decoration: none;
   text-transform: uppercase;
   background: $clr-accent-300;
@@ -241,8 +241,9 @@ nav {
   padding-top: 5rem;
 
   h1 {
-    line-height: 0;
     font-weight: 700;
+    word-wrap: normal;
+    line-height: 1.2; 
   }
 
   h2 {
@@ -258,13 +259,14 @@ nav {
 
   .product-props {
     max-width: 15rem;
+
   }
 
   .product-chars {
     display: inline-flex;
   }
   & > * {
-    margin-inline: 1rem;
+    margin-inline: 2rem;
   }
 }
 
