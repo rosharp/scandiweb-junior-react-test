@@ -61,7 +61,7 @@ export default class Product extends Component {
 
   render() {
     return (
-      <div>
+      <div className="product-container">
         <div className="product-img-container">
           <div className="inactive-img-container">
             {this.props.gallery.map((item, index) => {
@@ -102,7 +102,7 @@ export default class Product extends Component {
             <h3>
               {this.props.attributes
                 .filter((att) => att.name === "Size" || att.name === "Capacity")
-                .map((att) => att.name)}
+                .map((att) => att.name + ":")}
             </h3>
             {this.props.attributes
               .filter((att) => att.name === "Size" || att.name === "Capacity")
@@ -110,7 +110,7 @@ export default class Product extends Component {
                 att.items.map((att) => {
                   return (
                     <div key={att.id} className="product-chars">
-                      <div className="product-size">
+                      <div className="product-size button">
                         <input
                           type="radio"
                           id={att.id}
@@ -129,23 +129,25 @@ export default class Product extends Component {
             <h3>
               {this.props.attributes
                 .filter((att) => att.name === "Color")
-                .map((att) => att.name)}
+                .map((att) => att.name + ":")}
             </h3>
             {this.props.attributes
               .filter((att) => att.name === "Color")
               .map((att) =>
                 att.items.map((att) => {
                   return (
-                    <div key={att.id} className="product-chars">
-                      <div className="product-color">
+                    <div key={att.id} className="product-chars" >
+                      <div className="product-color button-clr">
                         <input
                           type="radio"
                           id={att.id}
                           name="color"
                           value={att.value}
                           onChange={this.handleColor}
+
                         />
-                        <label htmlFor={att.id}>{att.value}</label>
+                        <label htmlFor={att.id} style={{ backgroundColor: `${att.value}`}}></label>
+                          
                       </div>
                     </div>
                   );
@@ -157,7 +159,7 @@ export default class Product extends Component {
             <h3>
               {this.props.attributes
                 .filter((att) => att.name === "With USB 3 ports")
-                .map((att) => att.name)}
+                .map((att) => att.name + ":")}
             </h3>
             {this.props.attributes
               .filter((att) => att.name === "With USB 3 ports")
@@ -165,7 +167,7 @@ export default class Product extends Component {
                 att.items.map((att) => {
                   return (
                     <div key={att.id} className="product-chars">
-                      <div className="product-usb3">
+                      <div className="product-usb3 button">
                         <input
                           type="radio"
                           id={att.id}
@@ -185,7 +187,7 @@ export default class Product extends Component {
             <h3>
               {this.props.attributes
                 .filter((att) => att.name === "Touch ID in keyboard")
-                .map((att) => att.name)}
+                .map((att) => att.name + ":")}
             </h3>
             {this.props.attributes
               .filter((att) => att.name === "Touch ID in keyboard")
@@ -193,7 +195,7 @@ export default class Product extends Component {
                 att.items.map((att) => {
                   return (
                     <div key={att.id} className="product-chars">
-                      <div className="product-touchid">
+                      <div className="product-touchid button">
                         <input
                           type="radio"
                           id={att.id}
@@ -213,14 +215,17 @@ export default class Product extends Component {
             .filter((price) => price.currency.label === this.props.currency)
             .map((price, index) => {
               return (
-                <p key={index}>
+              <div>
+                <h3>Price:</h3>
+                <p key={index} className="price-tag">
                   {price.amount}
                   <span>{price.currency.symbol}</span>
                 </p>
+              </div>
               );
             })}
 
-          <button onClick={() => this.props.onAdd(this.state, this.state.index++)}>
+          <button onClick={() => this.props.onAdd(this.state, this.state.index++)} className="button-submit">
             Add To Cart
           </button>
 
