@@ -70,7 +70,7 @@ export default function App() {
           item.name === product.name && item.chars === product.chars
             ? {
                 ...exist,
-                qty: parseInt(`${exist.qty > 1 ? exist.qty - 1 : 1}`),
+                qty: exist.qty > 1 ? exist.qty - 1 : 1,
               }
             : item
         )

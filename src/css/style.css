@@ -212,6 +212,15 @@ nav > * {
   margin-inline: 1rem;
 }
 
+.cart .cart-items-container {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  border-top: 1px solid #e5e5e5;
+}
+.cart .cart-total-container {
+  border-top: 1px solid #e5e5e5;
+}
+
 .category-title {
   text-transform: capitalize;
 }

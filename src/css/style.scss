@@ -7,6 +7,7 @@ $SourceSansPro: 'Source Sans Pro', sans-serif;
 
 $clr-neutral-100: #ffffff;
 $clr-neutral-110: #f8f8f9;
+$clr-neutral-200: #e5e5e5;
 
 $clr-accent-300: #5ece7b;
 $clr-accent-400: #8bb596;
@@ -236,6 +237,24 @@ nav {
 
   & > * {
     margin-inline: 1rem;
+  }
+}
+
+.cart {
+  .cart-items-container {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    border-top: 1px solid $clr-neutral-200;
+  }
+
+  .cart-chars {
+  }
+
+  .qty-container {
+  }
+
+  .cart-total-container {
+    border-top: 1px solid $clr-neutral-200;
   }
 }
 

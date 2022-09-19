@@ -26,12 +26,12 @@ export default class Cart extends Component {
 
   render() {
     return (
-      <div>
+      <div className="cart">
         <h1>Cart</h1>
         {this.props.cart.map((item, index) => {
           return (
-            <div key={index}>
-              <div>
+            <div key={index} className="cart-items-container">
+              <div className="cart-chars">
                 <h2>{item.brand}</h2>
                 <h3>{item.name}</h3>
                 {item.prices
@@ -61,7 +61,7 @@ export default class Cart extends Component {
               <div className="qty-container">
                 <button
                   className="decrease-qty"
-                  onClick={() => this.props.onQtyDecrease(item)}
+                  onClick={() => item.qty > 1 ? this.props.onQtyDecrease(item) : this.props.onCartItemDelete(item)}
                 >
                   -
                 </button>
@@ -72,19 +72,12 @@ export default class Cart extends Component {
                 >
                   +
                 </button>
-                <br />
-                <button
-                  className="remove-cart-item"
-                  onClick={() => this.props.onCartItemDelete(item)}
-                >
-                  Remove
-                </button>
               </div>
             </div>
           );
         })}
 
-        <div>
+        <div className="cart-total-container">
           <p>Total:</p>
           {<p>{this.totalPrice()}</p>}
         </div>
