@@ -26,14 +26,19 @@ class Navbar extends Component {
       <nav>
         {data.categories.map((item, index) => {
           return (
-            <Link
-              key={index}
-              to="/"
-              value={item.name}
-              onClick={this.props.setCategory}
-            >
-              {item.name}
-            </Link>
+            <ul key={index}>
+              <li>
+                <Link
+                  key={index}
+                  to="/"
+                  value={item.name}
+                  onClick={this.props.setCategory}
+                  className={this.props.category === item.name ? "active-nav" : ""}
+                >
+                  {item.name}
+                </Link>
+              </li>
+            </ul>
           );
         })}
 

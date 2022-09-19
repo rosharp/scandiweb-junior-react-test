@@ -158,6 +158,36 @@ body {
 nav {
   display: flex;
   text-transform: uppercase;
+  padding-top: 1rem;
+}
+nav li {
+  list-style-type: none;
+  display: inline-block;
+  font-family: "Raleway", sans-serif;
+  font-size: 1rem;
+  font-weight: 400;
+}
+nav li > a {
+  color: #333;
+  text-decoration: none;
+  display: inline-block;
+  position: relative;
+}
+nav li > a::after {
+  content: "";
+  display: block;
+  margin: auto;
+  margin-top: 1rem;
+  height: 3px;
+  width: 0;
+  top: 5px;
+  background: transparent;
+  transition: all 0.3s;
+}
+nav li > a:hover::after, nav li > a.active-nav::after {
+  width: 100%;
+  margin-top: 1rem;
+  background: #5ece7b;
 }
 nav .nav-end {
   display: flex;

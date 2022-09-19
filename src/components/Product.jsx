@@ -17,8 +17,12 @@ export default class Product extends Component {
       brand: this.props.brand,
       prices: this.props.prices,
       chars: {},
-      index: 0,
+      index: this.randomIndex(),
     };
+  }
+
+  randomIndex() {
+    return parseInt(Date.now() * Math.random() + Math.random());
   }
 
   toggleActive(e) {
@@ -215,7 +219,7 @@ export default class Product extends Component {
             .filter((price) => price.currency.label === this.props.currency)
             .map((price, index) => {
               return (
-              <div>
+              <div key={index}>
                 <h3>Price:</h3>
                 <p key={index} className="price-tag">
                   {price.amount}
@@ -225,7 +229,9 @@ export default class Product extends Component {
               );
             })}
 
-          <button onClick={() => this.props.onAdd(this.state, this.state.index++)} className="button-submit">
+
+
+          <button onClick={() => this.setState({ index: this.randomIndex() }) & this.props.onAdd(this.state)} className="button-submit">
             Add To Cart
           </button>
 
