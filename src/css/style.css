@@ -214,7 +214,7 @@ nav > * {
 
 .cart .cart-items-container {
   display: grid;
-  grid-template-columns: repeat(2, 1fr);
+  grid-template-columns: repeat(3, 1fr);
   border-top: 1px solid #e5e5e5;
 }
 .cart .cart-total-container {

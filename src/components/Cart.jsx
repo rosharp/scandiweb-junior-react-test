@@ -1,9 +1,15 @@
-import React, { Component } from "react";
+// TODO:
+// increment/decrement img-index in state onClick
+// and display each cart item component's image depending on the state
 
-export default class Cart extends Component {
+import React, { Component } from "react";
+import withQuery from "../apollo/data.js"; 
+
+class Cart extends Component {
   constructor(props) {
     super(props);
     this.state = {
+      images: [],
       cart: "",
     };
   }
@@ -20,11 +26,20 @@ export default class Cart extends Component {
           (price) => price.currency.label === this.props.currency
         )[0].amount * item.qty;
     });
-
     return parseFloat(totalPrice.toFixed(2)) + " " + this.props.currency;
   }
 
+  componentDidMount() {
+    this.props.cart.forEach((item, index) => {
+      this.state.images.push({"img-index": 0})
+    })
+  }
+
+
   render() {
+    const data = this.props.dataValue;
+    console.log(data)
+
     return (
       <div className="cart">
         <h1>Cart</h1>
@@ -57,6 +72,7 @@ export default class Cart extends Component {
                     </div>
                   );
                 })}
+
               </div>
               <div className="qty-container">
                 <button
@@ -73,6 +89,13 @@ export default class Cart extends Component {
                   +
                 </button>
               </div>
+              <div >
+                <img src={item.gallery[0]} style={{ maxWidth: "10rem" }}/>
+                <div>
+                  <button>Prev</button>
+                  <button>Next</button>
+                </div>
+              </div>
             </div>
           );
         })}
@@ -85,3 +108,5 @@ export default class Cart extends Component {
     );
   }
 }
+
+export default withQuery(Cart);

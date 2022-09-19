@@ -1,7 +1,8 @@
 import React, { Component } from "react";
+import withQuery from "../apollo/data"
 import parse from "html-react-parser";
 
-export default class Product extends Component {
+class Product extends Component {
   constructor(props) {
     super(props);
 
@@ -16,10 +17,13 @@ export default class Product extends Component {
       name: this.props.name,
       brand: this.props.brand,
       prices: this.props.prices,
+      gallery: this.props.gallery,
       chars: {},
       index: this.randomIndex(),
+      item: {},
     };
   }
+
 
   randomIndex() {
     return parseInt(Date.now() * Math.random() + Math.random());
@@ -231,7 +235,11 @@ export default class Product extends Component {
 
 
 
-          <button onClick={() => this.setState({ index: this.randomIndex() }) & this.props.onAdd(this.state)} className="button-submit">
+          <button 
+            onClick={() => this.setState({ index: this.randomIndex() }) 
+              & this.props.onAdd(this.state)} 
+            className="button-submit"
+          >
             Add To Cart
           </button>
 
@@ -241,3 +249,5 @@ export default class Product extends Component {
     );
   }
 }
+
+export default withQuery(Product)
