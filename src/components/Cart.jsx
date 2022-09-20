@@ -4,6 +4,10 @@
 
 import React, { Component } from "react";
 import withQuery from "../apollo/data.js";
+import prev from "../images/prev.svg";
+import next from "../images/next.svg";
+import plus from "../images/plus.svg";
+import minus from "../images/minus.svg";
 
 class Cart extends Component {
   constructor(props) {
@@ -24,7 +28,6 @@ class Cart extends Component {
     } else {
       image = item.gallery.length - 1;
     }
-    console.log(item.gallery.length);
     images[index] = { imgIndex: image };
     this.setState({ images });
   }
@@ -104,8 +107,7 @@ class Cart extends Component {
                   className="increase-qty"
                   onClick={() => this.props.onQtyIncrease(item)}
                 >
-                  <span className="plus-x"></span>
-                  <span className="plus-y"></span>
+                <img src={plus} />
                 </button>
                 <p>{item.qty}</p>
                 <button
@@ -116,24 +118,24 @@ class Cart extends Component {
                       : this.props.onCartItemDelete(item)
                   }
                 >
-                  <span></span>
+                <img src={minus} />
                 </button>
               </div>
-              <div>
+              <div className="cart-img-container">
                 <img
+                className="cart-product-img"
                   src={
                     item.gallery[
                       parseInt(Object.values(this.state.images[index]))
                     ]
                   }
-                  style={{ maxWidth: "10rem" }}
                 />
-                <div>
+                <div className="cart-img-btn">
                   <button onClick={() => this.handlePrevImg(index, item)}>
-                    Prev
+                  <img src={prev} />
                   </button>
-                  <button onClick={() => this.handleNextImg(index, item)}>
-                    Next
+                  <button  onClick={() => this.handleNextImg(index, item)}>
+                  <img src={next} />
                   </button>
                 </div>
               </div>

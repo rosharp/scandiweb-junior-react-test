@@ -125,31 +125,9 @@ body {
   width: 2rem;
   height: 2rem;
 }
-
-.increase-qty .plus-x {
-  position: absolute;
-  left: 50%;
-  right: 50%;
-  top: 33.33%;
-  bottom: 33.33%;
-  border: 1px solid #1D1F22;
-}
-.increase-qty .plus-y {
-  position: absolute;
-  left: 33.33%;
-  right: 33.33%;
-  top: 50%;
-  bottom: 50%;
-  border: 1px solid #1D1F22;
-}
-
-.decrease-qty span {
-  position: absolute;
-  left: 33.33%;
-  right: 33.33%;
-  top: 50%;
-  bottom: 50%;
-  border: 1px solid #000000;
+.increase-qty img,
+.decrease-qty img {
+  max-width: 0.8rem;
 }
 
 .button-clr {
@@ -225,7 +203,8 @@ nav li > a::after {
   background: transparent;
   transition: all 0.3s;
 }
-nav li > a:hover::after, nav li > a.active-nav::after {
+nav li > a:hover::after,
+nav li > a.active-nav::after {
   width: 100%;
   margin-top: 1rem;
   background: #5ece7b;
@@ -257,11 +236,44 @@ nav > * {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   border-top: 1px solid #e5e5e5;
+  padding: 1rem 0 1rem 0;
+  height: auto;
+}
+.cart .cart-img-container {
+  position: relative;
+  width: 100%;
+  max-width: 14rem;
+}
+.cart .cart-img-container .cart-product-img {
+  width: 100%;
+  height: auto;
+  object-fit: contain;
+}
+.cart .cart-img-container .cart-img-btn {
+  position: absolute;
+  bottom: 1em;
+  right: 0;
+}
+.cart .cart-img-container .cart-img-btn button {
+  border: none;
+  width: 28px;
+  height: 28px;
+  background: rgba(0, 0, 0, 0.73);
+}
+.cart .cart-img-container .cart-img-btn > * {
+  margin-inline: 0.2rem;
 }
 .cart .qty-container {
+  height: 100%;
   display: flex;
   flex-direction: column;
   justify-content: center;
+  margin: auto;
+}
+.cart .qty-container .increase-qty,
+.cart .qty-container .decrease-qty {
+  justify-content: flex-start;
+  margin: auto;
 }
 .cart .cart-total-container {
   border-top: 1px solid #e5e5e5;

@@ -43,7 +43,6 @@ export default function App() {
   }
 
   function onQtyIncrease(product) {
-    console.log(product);
     const exist = cartItems.find(
       (item) => item.name === product.name && item.chars === product.chars
     );
