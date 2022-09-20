@@ -226,8 +226,8 @@ class Product extends Component {
               <div key={index}>
                 <h3>Price:</h3>
                 <p key={index} className="price-tag">
-                  {price.amount}
                   <span>{price.currency.symbol}</span>
+                  {price.amount}
                 </p>
               </div>
               );

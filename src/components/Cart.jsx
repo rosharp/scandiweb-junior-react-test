@@ -3,15 +3,42 @@
 // and display each cart item component's image depending on the state
 
 import React, { Component } from "react";
-import withQuery from "../apollo/data.js"; 
+import withQuery from "../apollo/data.js";
 
 class Cart extends Component {
   constructor(props) {
     super(props);
+    this.handlePrevImg = this.handlePrevImg.bind(this);
+    this.handleNextImg = this.handleNextImg.bind(this);
     this.state = {
       images: [],
       cart: "",
     };
+  }
+
+  handlePrevImg(index, item) {
+    let images = [...this.state.images];
+    let image = { ...images[index] };
+    if (item.gallery[parseInt(Object.values(this.state.images[index])) - 1]) {
+      image = parseInt(Object.values(image)) - 1;
+    } else {
+      image = item.gallery.length - 1;
+    }
+    console.log(item.gallery.length);
+    images[index] = { imgIndex: image };
+    this.setState({ images });
+  }
+
+  handleNextImg(index, item) {
+    let images = [...this.state.images];
+    let image = { ...images[index] };
+    if (item.gallery[parseInt(Object.values(this.state.images[index])) + 1]) {
+      image = parseInt(Object.values(image)) + 1;
+    } else {
+      image = 0;
+    }
+    images[index] = { imgIndex: image };
+    this.setState({ images });
   }
 
   totalPrice() {
@@ -29,16 +56,15 @@ class Cart extends Component {
     return parseFloat(totalPrice.toFixed(2)) + " " + this.props.currency;
   }
 
-  componentDidMount() {
-    this.props.cart.forEach((item, index) => {
-      this.state.images.push({"img-index": 0})
-    })
+  componentWillUnmount() {
+    this.setState({ images: [] });
   }
-
 
   render() {
     const data = this.props.dataValue;
-    console.log(data)
+    this.props.cart.forEach((item, index) => {
+      this.state.images.push({ imgIndex: 0 });
+    });
 
     return (
       <div className="cart">
@@ -56,8 +82,8 @@ class Cart extends Component {
                   .map((price, index) => {
                     return (
                       <p key={index}>
-                        {parseFloat((price.amount * item.qty).toFixed(2))}
                         <span>{price.currency.symbol}</span>
+                        {parseFloat((price.amount * item.qty).toFixed(2))}
                       </p>
                     );
                   })}
@@ -72,28 +98,43 @@ class Cart extends Component {
                     </div>
                   );
                 })}
-
               </div>
               <div className="qty-container">
-                <button
-                  className="decrease-qty"
-                  onClick={() => item.qty > 1 ? this.props.onQtyDecrease(item) : this.props.onCartItemDelete(item)}
-                >
-                  -
-                </button>
-                <p>{item.qty}</p>
                 <button
                   className="increase-qty"
                   onClick={() => this.props.onQtyIncrease(item)}
                 >
-                  +
+                  <span className="plus-x"></span>
+                  <span className="plus-y"></span>
+                </button>
+                <p>{item.qty}</p>
+                <button
+                  className="decrease-qty"
+                  onClick={() =>
+                    item.qty > 1
+                      ? this.props.onQtyDecrease(item)
+                      : this.props.onCartItemDelete(item)
+                  }
+                >
+                  <span></span>
                 </button>
               </div>
-              <div >
-                <img src={item.gallery[0]} style={{ maxWidth: "10rem" }}/>
+              <div>
+                <img
+                  src={
+                    item.gallery[
+                      parseInt(Object.values(this.state.images[index]))
+                    ]
+                  }
+                  style={{ maxWidth: "10rem" }}
+                />
                 <div>
-                  <button>Prev</button>
-                  <button>Next</button>
+                  <button onClick={() => this.handlePrevImg(index, item)}>
+                    Prev
+                  </button>
+                  <button onClick={() => this.handleNextImg(index, item)}>
+                    Next
+                  </button>
                 </div>
               </div>
             </div>

@@ -70,7 +70,8 @@ body {
   line-height: 18px;
 }
 
-.button {
+.button, .increase-qty,
+.decrease-qty {
   float: left;
   border: 2px solid black;
   margin: 0 10px 0 0;
@@ -79,8 +80,11 @@ body {
   position: relative;
 }
 
-.button label,
+.button label, .increase-qty label,
+.decrease-qty label,
 .button input,
+.increase-qty input,
+.decrease-qty input,
 .button-clr label,
 .button-clr input {
   font-family: "Source Sans Pro", sans-serif;
@@ -92,23 +96,60 @@ body {
   bottom: 0;
 }
 
-.button input[type=radio],
+.button input[type=radio], .increase-qty input[type=radio],
+.decrease-qty input[type=radio],
 .button-clr input[type=radio] {
   cursor: pointer;
   opacity: 0.011;
   z-index: 100;
 }
 
-.button input[type=radio]:checked + label {
+.button input[type=radio]:checked + label, .increase-qty input[type=radio]:checked + label,
+.decrease-qty input[type=radio]:checked + label {
   background: #1d1f22;
   color: #ffffff;
 }
 
-.button label {
+.button label, .increase-qty label,
+.decrease-qty label {
   display: flex;
   z-index: 90;
   line-height: 2.2em;
   justify-content: center;
+}
+
+.increase-qty,
+.decrease-qty {
+  background-color: #f8f8f9;
+  border: 1px solid black;
+  width: 2rem;
+  height: 2rem;
+}
+
+.increase-qty .plus-x {
+  position: absolute;
+  left: 50%;
+  right: 50%;
+  top: 33.33%;
+  bottom: 33.33%;
+  border: 1px solid #1D1F22;
+}
+.increase-qty .plus-y {
+  position: absolute;
+  left: 33.33%;
+  right: 33.33%;
+  top: 50%;
+  bottom: 50%;
+  border: 1px solid #1D1F22;
+}
+
+.decrease-qty span {
+  position: absolute;
+  left: 33.33%;
+  right: 33.33%;
+  top: 50%;
+  bottom: 50%;
+  border: 1px solid #000000;
 }
 
 .button-clr {
@@ -216,6 +257,11 @@ nav > * {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   border-top: 1px solid #e5e5e5;
+}
+.cart .qty-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
 }
 .cart .cart-total-container {
   border-top: 1px solid #e5e5e5;

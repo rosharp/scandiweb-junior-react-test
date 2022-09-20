@@ -127,6 +127,46 @@ body {
   justify-content: center;
 }
 
+.increase-qty,
+.decrease-qty {
+  @extend .button;
+  background-color: $clr-neutral-110;
+  border: 1px solid black;
+  width: 2rem;
+  height: 2rem;
+}
+
+.increase-qty {
+  .plus-x {
+    position: absolute;
+    left: 50%;
+    right: 50%;
+    top: 33.33%;
+    bottom: 33.33%;
+    border: 1px solid #1D1F22;  
+  }
+  .plus-y {
+    position: absolute;
+    left: 33.33%;
+    right: 33.33%;
+    top: 50%;
+    bottom: 50%;
+    border: 1px solid #1D1F22;
+  }
+}
+
+
+.decrease-qty {
+  span {
+    position: absolute;
+    left: 33.33%;
+    right: 33.33%;
+    top: 50%;
+    bottom: 50%;
+    border: 1px solid #000000;
+  }
+}
+
 .button-clr {
   width: 32px;
   height: 32px;
@@ -137,6 +177,7 @@ body {
 .button-clr input[type="radio"]:checked + label {
   outline: 2px solid $clr-accent-300; 
 }
+
 
 .button-submit {
   display: inline-block;
@@ -251,6 +292,9 @@ nav {
   }
 
   .qty-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
   }
 
   .cart-total-container {
