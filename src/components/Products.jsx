@@ -34,7 +34,7 @@ class Products extends Component {
       });
     });
 
-    const addItem = () => this.setState({...this.state, 
+    const addItem = () => this.setState({ 
         activeImg: 0,
         name: item.name,
         brand: item.brand,
