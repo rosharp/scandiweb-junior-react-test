@@ -1,3 +1,5 @@
+// TODO: fix find() method on onAdd
+
 import React, { Component, PureComponent, useState, useContext } from "react";
 import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
 import Home from "./components/Home";
@@ -40,7 +42,7 @@ class App extends Component {
       this.setState({
         cartItems: this.state.cartItems.map((item) =>
           item.name === product.name && item.chars === product.chars
-            ? { ...exist, qty: exist.qty + 1 }
+            ? { ...exist, qty: exist.qty + 1}
             : item
         ),
       });
@@ -97,7 +99,6 @@ class App extends Component {
 
   render() {
     const data = this.props.dataValue;
-    const refetch = this.props.refetch
     return (
       data ? (
         <Router>
@@ -117,6 +118,7 @@ class App extends Component {
                   category={this.state.category}
                   currency={this.state.currency}
                   dataValue={this.props.dataValue}
+                  onAdd={this.onAdd}
                 />
               }
             />
