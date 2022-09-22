@@ -1,9 +1,4 @@
-// TODO:
-// increment/decrement img-index in state onClick
-// and display each cart item component's image depending on the state
-
 import React, { Component } from "react";
-import withQuery from "../apollo/data.js";
 import prev from "../images/prev.svg";
 import next from "../images/next.svg";
 import plus from "../images/plus.svg";
@@ -152,4 +147,4 @@ class Cart extends Component {
   }
 }
 
-export default withQuery(Cart);
+export default Cart;

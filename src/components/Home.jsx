@@ -7,7 +7,7 @@ export default class Home extends Component {
         return (
             <div>
                 <h1 className="category-title">{this.props.category}</h1>
-                <Products category={this.props.category} currency={this.props.currency} />
+                <Products dataValue={this.props.dataValue} category={this.props.category} currency={this.props.currency} />
             </div>
         )
     }

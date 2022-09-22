@@ -1,153 +1,172 @@
 import React, { Component, PureComponent, useState, useContext } from "react";
-import { useQuery } from "@apollo/client";
 import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
-
-import { ALL_PRODUCTS } from "./apollo/products";
-import { ProductsContext } from "./components/ProductsContext";
 import Home from "./components/Home";
 import Navbar from "./components/Navbar";
 import Product from "./components/Product";
 import Cart from "./components/Cart";
+import withQuery from "./apollo/data";
 
-export default function App() {
-  const { loading, error, data } = useQuery(ALL_PRODUCTS);
-  const context = useContext(ProductsContext);
-  const [category, setCategory] = useState("all");
-  const [currency, setCurrency] = useState("USD");
-  const [cartItems, setCartItems] = useState([]);
+class App extends Component {
+  constructor() {
+    super();
+    this.handleClick = this.handleClick.bind(this);
+    this.handleCurrency = this.handleCurrency.bind(this);
+    this.onAdd = this.onAdd.bind(this);
+    this.onQtyIncrease = this.onQtyIncrease.bind(this);
+    this.onQtyDecrease = this.onQtyDecrease.bind(this);
+    this.onCartItemDelete = this.onCartItemDelete.bind(this);
 
-  function handleClick(e) {
-    setCategory(e.target.innerHTML);
+    this.state = {
+      category: "all",
+      currency: "USD",
+      cartItems: [],
+    };
   }
 
-  function handleCurrency(e) {
-    setCurrency(e.target.innerHTML);
+  handleClick(e) {
+    this.setState({ category: e.target.innerHTML });
   }
 
-  function onAdd(product) {
-    const exist = cartItems.find(
+  handleCurrency(e) {
+    this.setState({ currency: e.target.innerHTML });
+  }
+
+  onAdd(product) {
+    const exist = this.state.cartItems.find(
       (item) => item.name === product.name && item.chars === product.chars
     );
 
     if (exist) {
-      setCartItems(
-        cartItems.map((item) =>
+      this.setState({
+        cartItems: this.state.cartItems.map((item) =>
           item.name === product.name && item.chars === product.chars
             ? { ...exist, qty: exist.qty + 1 }
             : item
-        )
-      );
+        ),
+      });
     } else {
-      setCartItems([...cartItems, { ...product, qty: 1 }]);
+      this.setState({
+        cartItems: [...this.state.cartItems, { ...product, qty: 1 }],
+      });
     }
   }
 
-  function onQtyIncrease(product) {
-    const exist = cartItems.find(
+  onQtyIncrease(product) {
+    const exist = this.state.cartItems.find(
       (item) => item.name === product.name && item.chars === product.chars
     );
 
     if (exist) {
-      setCartItems(
-        cartItems.map((item) =>
+      this.setState({
+        cartItems: this.state.cartItems.map((item) =>
           item.name === product.name && item.chars === product.chars
             ? { ...exist, qty: exist.qty + 1 }
             : item
-        )
-      );
+        ),
+      });
     }
   }
 
-  function onQtyDecrease(product) {
-    const exist = cartItems.find(
+  onQtyDecrease(product) {
+    const exist = this.state.cartItems.find(
       (item) => item.name === product.name && item.chars === product.chars
     );
 
     if (exist) {
-      setCartItems(
-        cartItems.map((item) =>
+      this.setState({
+        cartItems: this.state.cartItems.map((item) =>
           item.name === product.name && item.chars === product.chars
             ? {
                 ...exist,
                 qty: exist.qty > 1 ? exist.qty - 1 : 1,
               }
             : item
-        )
-      );
+        ),
+      });
     }
   }
 
-  function onCartItemDelete(product) {
-    setCartItems(
-      cartItems.filter((item) => {
+  onCartItemDelete(product) {
+    this.setState({
+      cartItems: this.state.cartItems.filter((item) => {
         return item.index !== product.index;
-      })
-    );
+      }),
+    });
   }
 
-  if (loading) {
-    return <h2>Loading</h2>;
-  }
 
-  if (error) {
-    return <h2>Error</h2>;
-  }
-
-  return (
-    <Router>
-      <Navbar
-        setCategory={handleClick}
-        category={category}
-        setCurrency={handleCurrency}
-        currency={currency}
-      />
-
-      <Routes>
-        <Route
-          path="/"
-          element={<Home category={category} currency={currency} />}
-        />
-
-        <Route
-          path="/cart"
-          element={
-            <Cart
-              cart={cartItems}
-              onAdd={onAdd}
-              currency={currency}
-              onQtyDecrease={onQtyDecrease}
-              onQtyIncrease={onQtyIncrease}
-              onCartItemDelete={onCartItemDelete}
+  render() {
+    const data = this.props.dataValue;
+    const refetch = this.props.refetch
+    return (
+      data ? (
+        <Router>
+          <Navbar
+            setCategory={this.handleClick}
+            category={this.state.category}
+            setCurrency={this.handleCurrency}
+            currency={this.state.currency}
+            dataValue={data}
+          />
+  
+          <Routes>
+            <Route
+              path="/"
+              element={
+                <Home
+                  category={this.state.category}
+                  currency={this.state.currency}
+                  dataValue={this.props.dataValue}
+                />
+              }
             />
-          }
-        />
+  
+            <Route
+              path="/cart"
+              element={
+                <Cart
+                  cart={this.state.cartItems}
+                  onAdd={this.onAdd}
+                  currency={this.state.currency}
+                  onQtyDecrease={this.onQtyDecrease}
+                  onQtyIncrease={this.onQtyIncrease}
+                  onCartItemDelete={this.onCartItemDelete}
+                />
+              }
+            />
+  
+          {data.categories
+            .filter((category) => category.name === "all")[0]
+            .products.map((product, index) => {
+              return (
+                <Route
+                  key={index}
+                  path={"/products/" + product.id}
+                  element={
+                    <Product
+                      name={product.name}
+                      brand={product.brand}
+                      category={product.category}
+                      attributes={product.attributes}
+                      description={product.description}
+                      gallery={product.gallery}
+                      inStock={product.inStock}
+                      currency={this.state.currency}
+                      prices={product.prices}
+                      cart={this.state.cartItems}
+                      onAdd={this.onAdd}
+                    />
+                  }
+                />
+              );
+            })}
+  
+          </Routes>
+        </Router>
+      )
+      : <h1>Loading...</h1>
+      );
+    } 
+  }
 
-        {data.categories
-          .filter((category) => category.name === "all")[0]
-          .products.map((product, index) => {
-            return (
-              <Route
-                key={index}
-                path={"/products/" + product.id}
-                element={
-                  <Product
-                    name={product.name}
-                    brand={product.brand}
-                    category={product.category}
-                    attributes={product.attributes}
-                    description={product.description}
-                    gallery={product.gallery}
-                    inStock={product.inStock}
-                    currency={currency}
-                    prices={product.prices}
-                    cart={cartItems}
-                    onAdd={onAdd}
-                  />
-                }
-              />
-            );
-          })}
-      </Routes>
-    </Router>
-  );
-}
+export default withQuery(App)

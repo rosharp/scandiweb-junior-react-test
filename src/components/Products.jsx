@@ -1,6 +1,5 @@
 import React, { Component, useContext } from "react";
 import { Link } from "react-router-dom";
-import withQuery from "../apollo/data";
 import { ProductsContext } from "./ProductsContext";
 class Products extends Component {
   static contextType = ProductsContext;
@@ -47,4 +46,4 @@ class Products extends Component {
   }
 }
 
-export default withQuery(Products);
+export default Products;

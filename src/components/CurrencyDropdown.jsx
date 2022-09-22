@@ -1,40 +1,42 @@
-import React, { Component } from 'react'
-import withQuery from "../apollo/data";
+import React, { Component } from "react";
 
 class CurrencyDropdown extends Component {
-    constructor(props) {
-        super(props)
-        this.handleChange = this.handleChange.bind(this);
-        this.state = {
-            showCurrencySwitch: false,
-        };
-    }
+  constructor(props) {
+    super(props);
+    this.handleChange = this.handleChange.bind(this);
+    this.state = {
+      showCurrencySwitch: false,
+    };
+  }
 
-    handleChange() {
-        this.setState({ showCurrencySwitch: this.state.showCurrencySwitch ? false : true })
-    }
+  handleChange() {
+    this.setState({
+      showCurrencySwitch: this.state.showCurrencySwitch ? false : true,
+    });
+  }
 
-    render() {
-        const data = this.props.dataValue;
-        return (
-            <div className="currency-dropdown">
-                <button onClick={this.handleChange}>$</button>
-                {this.state.showCurrencySwitch ?
-                    (
-                        <ul className="currency-dropdown-list">
-                            {data.categories[0].products[0].prices.map((p, index) => {
-                                return (
-                                    <li key={index}>
-                                        {p.currency.symbol}<span onClick={this.props.setCurrency}>{p.currency.label}</span>
-                                    </li>
-                                );
-                            })}
-                        </ul>
-                    ) : null
-                }
-            </div>
-        )
-    }
+  render() {
+    const data = this.props.dataValue;
+    return (
+      <div className="currency-dropdown">
+        <button onClick={this.handleChange}>$</button>
+        {this.state.showCurrencySwitch ? (
+          <ul className="currency-dropdown-list">
+            {data.categories[0].products[0].prices.map((p, index) => {
+              return (
+                <li key={index}>
+                  {p.currency.symbol}
+                  <span onClick={this.props.setCurrency}>
+                    {p.currency.label}
+                  </span>
+                </li>
+              );
+            })}
+          </ul>
+        ) : null}
+      </div>
+    );
+  }
 }
 
-export default withQuery(CurrencyDropdown);
+export default CurrencyDropdown;

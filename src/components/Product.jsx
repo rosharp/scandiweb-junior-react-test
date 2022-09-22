@@ -1,5 +1,4 @@
 import React, { Component } from "react";
-import withQuery from "../apollo/data"
 import parse from "html-react-parser";
 
 class Product extends Component {
@@ -250,4 +249,4 @@ class Product extends Component {
   }
 }
 
-export default withQuery(Product)
+export default Product

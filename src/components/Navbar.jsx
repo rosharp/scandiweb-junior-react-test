@@ -1,6 +1,5 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
-import withQuery from "../apollo/data";
 import { ProductsContext } from "./ProductsContext";
 
 import CurrencyDropdown from "./CurrencyDropdown";
@@ -46,6 +45,7 @@ class Navbar extends Component {
           <CurrencyDropdown
             currency={this.props.currency}
             setCurrency={this.props.setCurrency}
+            dataValue={this.props.dataValue}
           />
           <Link to="cart">Cart</Link>
         </div>
@@ -54,5 +54,5 @@ class Navbar extends Component {
   }
 }
 
-export default withQuery(Navbar);
+export default Navbar;
 
