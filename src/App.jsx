@@ -1,5 +1,3 @@
-// TODO: fix find() method on onAdd
-
 import React, { Component, PureComponent, useState, useContext } from "react";
 import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
 import Home from "./components/Home";
@@ -46,7 +44,6 @@ class App extends Component {
             : item 
         ),
       });
-      console.log(product)
     } else {
       this.setState({
         cartItems: [...this.state.cartItems, { ...product, qty: 1 }],
@@ -128,6 +125,7 @@ class App extends Component {
               path="/cart"
               element={
                 <Cart
+                  dataValue={this.props.dataValue}
                   cart={this.state.cartItems}
                   onAdd={this.onAdd}
                   currency={this.state.currency}

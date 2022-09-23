@@ -3,6 +3,7 @@ import prev from "../images/prev.svg";
 import next from "../images/next.svg";
 import plus from "../images/plus.svg";
 import minus from "../images/minus.svg";
+import { isTypeNode } from "graphql";
 
 class Cart extends Component {
   constructor(props) {
@@ -11,7 +12,7 @@ class Cart extends Component {
     this.handleNextImg = this.handleNextImg.bind(this);
     this.state = {
       images: [],
-      cart: "",
+      cartItems: {},
     };
   }
 
@@ -85,6 +86,27 @@ class Cart extends Component {
                       </p>
                     );
                   })}
+
+
+                  {/* {this.props.dataValue.categories[0].products.filter(product => product.name === item.name)[0].attributes.map((att, index) => {
+                    return (
+                      <div key={index}>
+                      <h3>{att.name}</h3>
+                      {
+                        att.items.map((att, index) => {
+                          return att.chars.map(([char, value], index) => {
+                            if (char === att.name && value === att.value) {
+                              return <label key={index}>{att.value}</label>
+                            } else {
+                              return <label className="active" key={index}>{att.value}</label>
+                            }
+                          })
+                        })
+                      }
+                      </div>
+                    )
+                  })} */}
+
                 {Object.entries(item.chars).map(([char, value], index) => {
                   return (
                     <div key={index}>
@@ -102,7 +124,7 @@ class Cart extends Component {
                   className="increase-qty"
                   onClick={() => this.props.onQtyIncrease(item)}
                 >
-                <img src={plus} />
+                  <img src={plus} />
                 </button>
                 <p>{item.qty}</p>
                 <button
@@ -113,12 +135,12 @@ class Cart extends Component {
                       : this.props.onCartItemDelete(item)
                   }
                 >
-                <img src={minus} />
+                  <img src={minus} />
                 </button>
               </div>
               <div className="cart-img-container">
                 <img
-                className="cart-product-img"
+                  className="cart-product-img"
                   src={
                     item.gallery[
                       parseInt(Object.values(this.state.images[index]))
@@ -127,10 +149,10 @@ class Cart extends Component {
                 />
                 <div className="cart-img-btn">
                   <button onClick={() => this.handlePrevImg(index, item)}>
-                  <img src={prev} />
+                    <img src={prev} />
                   </button>
-                  <button  onClick={() => this.handleNextImg(index, item)}>
-                  <img src={next} />
+                  <button onClick={() => this.handleNextImg(index, item)}>
+                    <img src={next} />
                   </button>
                 </div>
               </div>
