@@ -13,6 +13,7 @@ class Product extends Component {
 
     this.state = {
       activeImg: 0,
+      id: this.props.id,
       name: this.props.name,
       brand: this.props.brand,
       prices: this.props.prices,

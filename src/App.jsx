@@ -35,17 +35,18 @@ class App extends Component {
 
   onAdd(product) {
     const exist = this.state.cartItems.find(
-      (item) => item.name === product.name && item.chars === product.chars
+      (item) =>  item.id === product.id && JSON.stringify(item.chars) === JSON.stringify(product.chars)
     );
 
     if (exist) {
       this.setState({
         cartItems: this.state.cartItems.map((item) =>
-          item.name === product.name && item.chars === product.chars
-            ? { ...exist, qty: exist.qty + 1}
-            : item
+          (item.id === product.id && JSON.stringify(item.chars) === JSON.stringify(product.chars))
+            ? { ...exist, qty: exist.qty + 1} 
+            : item 
         ),
       });
+      console.log(product)
     } else {
       this.setState({
         cartItems: [...this.state.cartItems, { ...product, qty: 1 }],
@@ -146,6 +147,7 @@ class App extends Component {
                   path={"/products/" + product.id}
                   element={
                     <Product
+                      id={product.id}
                       name={product.name}
                       brand={product.brand}
                       category={product.category}

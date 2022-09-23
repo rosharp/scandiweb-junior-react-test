@@ -8,15 +8,13 @@ class Products extends Component {
     this.randomIndex = this.randomIndex.bind(this);
 
     this.state = {
-      activeImg: 0,
+      id: "",
       name: "",
       brand: "",
       prices: {},
       gallery: {},
       chars: {},
       index: 0,
-      item: {},
-      qty: 1,
     };
   }
 
@@ -35,7 +33,7 @@ class Products extends Component {
     });
 
     const addItem = () => this.setState({ 
-        activeImg: 0,
+        id: item.id,
         name: item.name,
         brand: item.brand,
         prices: item.prices,
