@@ -26,27 +26,28 @@ class Products extends Component {
     e.preventDefault();
     const chars = {};
 
-    item.attributes.map((att) => {
-      return Object.assign(this.state.chars, {
-        [att.name]: att.items[0].value,
-      });
-    });
+    const addItem = () =>
+      this.setState(
+        {
+          id: item.id,
+          name: item.name,
+          brand: item.brand,
+          prices: item.prices,
+          gallery: item.gallery,
+          chars: chars,
+          index: this.randomIndex(),
+        },
+        () => {
+          item.attributes.map((att) => {
+            return Object.assign(this.state.chars, {
+              [att.name]: att.items[0].value,
+            });
+          });
+          this.props.onAdd(this.state);
+        }
+      );
 
-    const addItem = () => this.setState({ 
-        id: item.id,
-        name: item.name,
-        brand: item.brand,
-        prices: item.prices,
-        gallery: item.gallery,
-        chars: chars,
-        index: this.randomIndex(),
-      });
-
-      addItem();
-
-    if (this.state.name !== "") {
-      this.props.onAdd(this.state);
-    }
+    addItem();
   }
 
   render() {
