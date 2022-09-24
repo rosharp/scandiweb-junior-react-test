@@ -87,37 +87,29 @@ class Cart extends Component {
                     );
                   })}
 
-
-                  {/* {this.props.dataValue.categories[0].products.filter(product => product.name === item.name)[0].attributes.map((att, index) => {
+                {this.props.dataValue.categories[0].products
+                  .filter((product) => product.name === item.name)[0]
+                  .attributes.map((att, index) => {
                     return (
                       <div key={index}>
-                      <h3>{att.name}</h3>
-                      {
-                        att.items.map((att, index) => {
-                          return att.chars.map(([char, value], index) => {
-                            if (char === att.name && value === att.value) {
-                              return <label key={index}>{att.value}</label>
-                            } else {
-                              return <label className="active" key={index}>{att.value}</label>
-                            }
-                          })
-                        })
-                      }
+                        <h3>{att.name}</h3>
+                        {att.items.map((a) => {
+                          if (
+                            Object.entries(item.chars).filter(
+                              (i) => att.name === i[0]
+                            )[0][1] === a.value
+                          ) {
+                            return (
+                              <label style={{ color: "red" }}>{a.value}</label>
+                            );
+                          } else {
+                            return <label>{a.value}</label>;
+                          }
+                        })}
                       </div>
-                    )
-                  })} */}
+                    );
+                  })}
 
-                {Object.entries(item.chars).map(([char, value], index) => {
-                  return (
-                    <div key={index}>
-                      {
-                        <p>
-                          {char}: {value}
-                        </p>
-                      }
-                    </div>
-                  );
-                })}
               </div>
               <div className="qty-container">
                 <button
