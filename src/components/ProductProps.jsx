@@ -1,51 +1,40 @@
-import React, { Component } from "react";
-import parse from "html-react-parser";
-import Alert from "./Alert";
-import ProductImg from "./ProductImg";
+import { Component } from 'react'
 
-class Product extends Component {
+class ProductProps extends Component {
   constructor(props) {
     super(props);
 
-    this.toggleActive = this.toggleActive.bind(this);
     this.handleSizeOrCapacity = this.handleSizeOrCapacity.bind(this);
     this.handleColor = this.handleColor.bind(this);
     this.handlePorts = this.handlePorts.bind(this);
     this.handleTouchId = this.handleTouchId.bind(this);
 
     this.state = {
-      activeImg: 0,
       id: this.props.id,
       name: this.props.name,
       brand: this.props.brand,
       prices: this.props.prices,
       gallery: this.props.gallery,
       chars: {},
-      index: this.randomIndex(),
       item: {},
     };
   }
-
 
   randomIndex() {
     return parseInt(Date.now() * Math.random() + Math.random());
   }
 
-  toggleActive(e) {
-    this.setState({ activeImg: parseInt(e.target.id) });
-  }
-
   handleSizeOrCapacity(e) {
     this.setState({
       ...this.state,
-      chars: { ...this.state.chars, "Size": e.target.value },
+      chars: { ...this.state.chars, Size: e.target.value },
     });
   }
 
   handleColor(e) {
     this.setState({
       ...this.state,
-      chars: { ...this.state.chars, "Color": e.target.value },
+      chars: { ...this.state.chars, Color: e.target.value },
     });
   }
 
@@ -54,37 +43,51 @@ class Product extends Component {
       ...this.state,
       chars: {
         ...this.state.chars,
-        "USB-3 Ports": e.target.value === "Yes" ? "Yes" : "No",
+        "USB-3 Ports":
+          (e.target.name === "usb3") & (e.target.value === "Yes")
+            ? "Yes"
+            : "No",
       },
     });
   }
 
   handleTouchId(e) {
-    this.setState({
-      ...this.state,
-      chars: {
-        ...this.state.chars,
-        "TouchID": e.target.value === "Yes" ? "Yes" : "No",
-      },
-    });
+    if (e.target.name === "touchid") {
+      this.setState({
+        ...this.state,
+        chars: {
+          ...this.state.chars,
+          TouchID:
+            (e.target.name === "touchid") & (e.target.value === "Yes")
+              ? "Yes"
+              : "No",
+        },
+      });
+      console.log(e.target);
+    }
   }
 
-  render() {
-    return (
-      <div className="product-container">
-       <ProductImg gallery={this.props.gallery} /> 
+  render () {
+    const atts = this.props.attributes;
+    const sizeCapacity = atts.filter((att) => att.name === "Size" || att.name === "Capacity");
+    const color = atts.filter((att) => att.name === "Color");
+    const ports = atts.filter((att) => att.name === "With USB 3 ports");
+    const touchId = atts.filter((att) => att.name === "Touch ID in keyboard");
 
+    return   (
         <div className="product-props">
-          <h1>{this.props.brand}</h1>
+         <h1>{this.props.brand}</h1>
           <h2>{this.props.name}</h2>
-          <div className="size-capacity-att">
+          {
+    atts.map((att) => {
+      return att.name === "Size" || att.name === "Capacity" ?
+
+        <div className="size-capacity-att">
             <h3>
-              {this.props.attributes
-                .filter((att) => att.name === "Size" || att.name === "Capacity")
+              {sizeCapacity
                 .map((att) => att.name + ":")}
             </h3>
-            {this.props.attributes
-              .filter((att) => att.name === "Size" || att.name === "Capacity")
+            {sizeCapacity
               .map((att) =>
                 att.items.map((att) => {
                   return (
@@ -104,18 +107,19 @@ class Product extends Component {
                 })
               )}
           </div>
-          <div className="color-att">
+
+      :  att.name === "Color" ?
+
+        <div className="color-att">
             <h3>
-              {this.props.attributes
-                .filter((att) => att.name === "Color")
+              {color
                 .map((att) => att.name + ":")}
             </h3>
-            {this.props.attributes
-              .filter((att) => att.name === "Color")
+            {color
               .map((att) =>
                 att.items.map((att) => {
                   return (
-                    <div key={att.id} className="product-chars" >
+                    <div key={att.id} className="product-chars">
                       <div className="product-color button-clr">
                         <input
                           type="radio"
@@ -123,10 +127,11 @@ class Product extends Component {
                           name="color"
                           value={att.value}
                           onChange={this.handleColor}
-
                         />
-                        <label htmlFor={att.id} style={{ backgroundColor: `${att.value}`}}></label>
-                          
+                        <label
+                          htmlFor={att.id}
+                          style={{ backgroundColor: `${att.value}` }}
+                        ></label>
                       </div>
                     </div>
                   );
@@ -134,14 +139,14 @@ class Product extends Component {
               )}
           </div>
 
-          <div className="ports-att">
+      : att.name === "With USB 3 ports" ?
+
+         <div className="ports-att">
             <h3>
-              {this.props.attributes
-                .filter((att) => att.name === "With USB 3 ports")
+              {ports
                 .map((att) => att.name + ":")}
             </h3>
-            {this.props.attributes
-              .filter((att) => att.name === "With USB 3 ports")
+            {ports
               .map((att) =>
                 att.items.map((att) => {
                   return (
@@ -162,14 +167,14 @@ class Product extends Component {
               )}
           </div>
 
-          <div className="touchid-att">
+         : att.name === "Touch ID in keyboard" ?
+
+         <div className="touchid-att">
             <h3>
-              {this.props.attributes
-                .filter((att) => att.name === "Touch ID in keyboard")
+              {touchId
                 .map((att) => att.name + ":")}
             </h3>
-            {this.props.attributes
-              .filter((att) => att.name === "Touch ID in keyboard")
+            {touchId
               .map((att) =>
                 att.items.map((att) => {
                   return (
@@ -177,7 +182,7 @@ class Product extends Component {
                       <div className="product-touchid button">
                         <input
                           type="radio"
-                          id={att.id}
+                          id="touchid"
                           name="touchid"
                           value={att.value}
                           onChange={this.handleTouchId}
@@ -190,36 +195,39 @@ class Product extends Component {
               )}
           </div>
 
-          {this.props.prices
+        : <></>
+    })
+
+
+          }
+       {this.props.prices
             .filter((price) => price.currency.label === this.props.currency)
             .map((price, index) => {
               return (
-              <div key={index}>
-                <h3>Price:</h3>
-                <p key={index} className="price-tag">
-                  <span>{price.currency.symbol}</span>
-                  {price.amount}
-                </p>
-              </div>
+                <div key={index}>
+                  <h3>Price:</h3>
+                  <p key={index} className="price-tag">
+                    <span>{price.currency.symbol}</span>
+                    {price.amount}
+                  </p>
+                </div>
               );
             })}
 
-
-
-          <button 
-            onClick={() => this.setState({ index: this.randomIndex() }) 
-              & this.props.onAdd(this.state)} 
+          <button
+            onClick={() =>
+              this.setState({ index: this.randomIndex() }) &
+              this.props.onAdd(this.state)
+            }
             className="button-submit"
           >
             Add To Cart
           </button>
-
-          {parse(this.props.description)}
         </div>
-          { this.props.showMessage ? <Alert /> : null }
-      </div>
-    );
+   ) 
+ 
+    
   }
 }
 
-export default Product
+export default ProductProps; 

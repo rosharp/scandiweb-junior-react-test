@@ -34,15 +34,18 @@ class App extends Component {
 
   onAdd(product) {
     const exist = this.state.cartItems.find(
-      (item) =>  item.id === product.id && JSON.stringify(item.chars) === JSON.stringify(product.chars)
+      (item) =>
+        item.id === product.id &&
+        JSON.stringify(item.chars) === JSON.stringify(product.chars)
     );
 
     if (exist) {
       this.setState({
         cartItems: this.state.cartItems.map((item) =>
-          (item.id === product.id && JSON.stringify(item.chars) === JSON.stringify(product.chars))
-            ? { ...exist, qty: exist.qty + 1} 
-            : item 
+          item.id === product.id &&
+          JSON.stringify(item.chars) === JSON.stringify(product.chars)
+            ? { ...exist, qty: exist.qty + 1 }
+            : item
         ),
       });
     } else {
@@ -53,7 +56,9 @@ class App extends Component {
 
     this.setState({ showMessage: true });
 
-    setTimeout(() => { this.setState({ showMessage: false }) }, 2000);
+    setTimeout(() => {
+      this.setState({ showMessage: false });
+    }, 2000);
   }
 
   onQtyIncrease(product) {
@@ -99,49 +104,52 @@ class App extends Component {
     });
   }
 
-
   render() {
     const data = this.props.dataValue;
-    return (
-      data ? (
-        <Router>
-          <Navbar
-            setCategory={this.handleClick}
-            category={this.state.category}
-            setCurrency={this.handleCurrency}
-            currency={this.state.currency}
-            dataValue={data}
+    return data ? (
+      <Router>
+        <Navbar
+          setCategory={this.handleClick}
+          category={this.state.category}
+          setCurrency={this.handleCurrency}
+          currency={this.state.currency}
+          dataValue={data}
+          cart={this.state.cartItems}
+          onAdd={this.onAdd}
+          onQtyDecrease={this.onQtyDecrease}
+          onQtyIncrease={this.onQtyIncrease}
+          onCartItemDelete={this.onCartItemDelete}
+        />
+
+        <Routes>
+          <Route
+            path="/"
+            element={
+              <Home
+                category={this.state.category}
+                currency={this.state.currency}
+                dataValue={this.props.dataValue}
+                onAdd={this.onAdd}
+                showMessage={this.state.showMessage}
+              />
+            }
           />
-  
-          <Routes>
-            <Route
-              path="/"
-              element={
-                <Home
-                  category={this.state.category}
-                  currency={this.state.currency}
-                  dataValue={this.props.dataValue}
-                  onAdd={this.onAdd}
-                  showMessage={this.state.showMessage}
-                />
-              }
-            />
-  
-            <Route
-              path="/cart"
-              element={
-                <Cart
-                  dataValue={this.props.dataValue}
-                  cart={this.state.cartItems}
-                  onAdd={this.onAdd}
-                  currency={this.state.currency}
-                  onQtyDecrease={this.onQtyDecrease}
-                  onQtyIncrease={this.onQtyIncrease}
-                  onCartItemDelete={this.onCartItemDelete}
-                />
-              }
-            />
-  
+
+          <Route
+            path="/cart"
+            element={
+              <Cart
+                dataValue={this.props.dataValue}
+                cart={this.state.cartItems}
+                onAdd={this.onAdd}
+                currency={this.state.currency}
+                onQtyDecrease={this.onQtyDecrease}
+                onQtyIncrease={this.onQtyIncrease}
+                onCartItemDelete={this.onCartItemDelete}
+              />
+            }
+          />
+
           {data.categories
             .filter((category) => category.name === "all")[0]
             .products.map((product, index) => {
@@ -169,13 +177,12 @@ class App extends Component {
                 />
               );
             })}
-  
-          </Routes>
-        </Router>
-      )
-      : <h1>Loading...</h1>
-      );
-    } 
+        </Routes>
+      </Router>
+    ) : (
+      <h1>Loading...</h1>
+    );
   }
+}
 
-export default withQuery(App)
+export default withQuery(App);

@@ -22,9 +22,9 @@ $c-black: #1d1f22;
 
 @keyframes moveToTop {
     0% {
-       transform: translate(-50%, 100%);
+       transform: translate(-50%, 120%);
      }
-    25% {
+    20% {
        transform: translate(-50%, -50%);
     }
     50% {
@@ -258,6 +258,8 @@ nav {
   .currency-dropdown {
     .currency-dropdown-list {
       position: absolute;
+      display: flex;
+      flex-direction: column;
       background-color: $clr-neutral-100;
       filter: drop-shadow(0 0.2rem 0.1rem rgba(0, 0, 0, 0.025));
       list-style: none;
@@ -277,6 +279,17 @@ nav {
   & > * {
     margin-inline: 1rem;
   }
+}
+
+.minicart {
+     position: absolute;
+     display: flex;
+     z-index: 9999;
+     max-height: 30rem;
+     overflow: auto;
+     flex-direction: column;
+     background-color: $clr-neutral-100;
+     filter: drop-shadow(0 0.2rem 0.1rem rgba(0, 0, 0, 0.025));
 }
 
 .cart {
