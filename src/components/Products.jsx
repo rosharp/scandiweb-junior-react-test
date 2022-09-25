@@ -1,6 +1,8 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import emptyCart from "../images/empty-cart.svg";
+import Alert from "./Alert";
+
 class Products extends Component {
   constructor(props) {
     super(props);
@@ -92,6 +94,9 @@ class Products extends Component {
                       );
                     })}
                 </div>
+                {
+                  this.props.showMessage ? <Alert /> : null
+                }
               </Link>
             );
           })}

@@ -1,43 +1,15 @@
 import React, { Component } from "react";
-import prev from "../images/prev.svg";
-import next from "../images/next.svg";
+import ImagesSlider from "./ImagesSlider";
 import plus from "../images/plus.svg";
 import minus from "../images/minus.svg";
-import { isTypeNode } from "graphql";
 
 class Cart extends Component {
   constructor(props) {
     super(props);
-    this.handlePrevImg = this.handlePrevImg.bind(this);
-    this.handleNextImg = this.handleNextImg.bind(this);
+
     this.state = {
-      images: [],
       cartItems: {},
     };
-  }
-
-  handlePrevImg(index, item) {
-    let images = [...this.state.images];
-    let image = { ...images[index] };
-    if (item.gallery[parseInt(Object.values(this.state.images[index])) - 1]) {
-      image = parseInt(Object.values(image)) - 1;
-    } else {
-      image = item.gallery.length - 1;
-    }
-    images[index] = { imgIndex: image };
-    this.setState({ images });
-  }
-
-  handleNextImg(index, item) {
-    let images = [...this.state.images];
-    let image = { ...images[index] };
-    if (item.gallery[parseInt(Object.values(this.state.images[index])) + 1]) {
-      image = parseInt(Object.values(image)) + 1;
-    } else {
-      image = 0;
-    }
-    images[index] = { imgIndex: image };
-    this.setState({ images });
   }
 
   totalPrice() {
@@ -61,9 +33,6 @@ class Cart extends Component {
 
   render() {
     const data = this.props.dataValue;
-    this.props.cart.forEach((item, index) => {
-      this.state.images.push({ imgIndex: 0 });
-    });
 
     return (
       <div className="cart">
@@ -87,30 +56,19 @@ class Cart extends Component {
                     );
                   })}
 
-                {this.props.dataValue.categories[0].products
-                  .filter((product) => product.name === item.name)[0]
-                  .attributes.map((att, index) => {
-                    return (
-                      <div key={index}>
-                        <h3>{att.name}</h3>
-                        {att.items.map((a) => {
-                          if (
-                            Object.entries(item.chars).filter(
-                              (i) => att.name === i[0]
-                            )[0][1] === a.value
-                          ) {
-                            return (
-                              <label style={{ color: "red" }}>{a.value}</label>
-                            );
-                          } else {
-                            return <label>{a.value}</label>;
-                          }
-                        })}
-                      </div>
-                    );
-                  })}
-
+                {Object.entries(item.chars).map(([char, value], index) => {
+                  return (
+                    <div key={index}>
+                      {
+                        <p>
+                          {char}: {value}
+                        </p>
+                      }
+                    </div>
+                  );
+                })}
               </div>
+
               <div className="qty-container">
                 <button
                   className="increase-qty"
@@ -130,27 +88,14 @@ class Cart extends Component {
                   <img src={minus} />
                 </button>
               </div>
-              <div className="cart-img-container">
-                <img
-                  className="cart-product-img"
-                  src={
-                    item.gallery[
-                      parseInt(Object.values(this.state.images[index]))
-                    ]
-                  }
-                />
-                <div className="cart-img-btn">
-                  <button onClick={() => this.handlePrevImg(index, item)}>
-                    <img src={prev} />
-                  </button>
-                  <button onClick={() => this.handleNextImg(index, item)}>
-                    <img src={next} />
-                  </button>
-                </div>
-              </div>
+
+              <ImagesSlider item={item} index={index} cart={this.props.cart} />
             </div>
           );
+
+
         })}
+
 
         <div className="cart-total-container">
           <p>Total:</p>

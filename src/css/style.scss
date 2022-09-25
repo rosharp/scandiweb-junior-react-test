@@ -20,6 +20,25 @@ $c-black: #1d1f22;
   box-sizing: border-box;
 }
 
+@keyframes moveToTop {
+    0% {
+       transform: translate(-50%, 100%);
+     }
+    25% {
+       transform: translate(-50%, -50%);
+    }
+    50% {
+       transform: translate(-50%, -50%);
+    }
+    80% {
+       transform: translate(-50%, -50%);
+    }
+    100% {
+       transform: translate(-50%, 120%);
+    }
+}
+
+
 a,
 h1,
 h2,

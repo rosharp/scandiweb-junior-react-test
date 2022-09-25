@@ -1,6 +1,5 @@
 import React, { Component } from "react";
 import Products from "./Products";
-import { ProductsContext } from "./ProductsContext";
 
 export default class Home extends Component {
   render() {
@@ -12,6 +11,7 @@ export default class Home extends Component {
           category={this.props.category}
           currency={this.props.currency}
           onAdd={this.props.onAdd}
+          showMessage={this.props.showMessage}
         />
       </div>
     );

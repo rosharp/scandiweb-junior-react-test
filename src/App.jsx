@@ -20,6 +20,7 @@ class App extends Component {
       category: "all",
       currency: "USD",
       cartItems: [],
+      showMessage: false,
     };
   }
 
@@ -49,6 +50,10 @@ class App extends Component {
         cartItems: [...this.state.cartItems, { ...product, qty: 1 }],
       });
     }
+
+    this.setState({ showMessage: true });
+
+    setTimeout(() => { this.setState({ showMessage: false }) }, 2000);
   }
 
   onQtyIncrease(product) {
@@ -117,6 +122,7 @@ class App extends Component {
                   currency={this.state.currency}
                   dataValue={this.props.dataValue}
                   onAdd={this.onAdd}
+                  showMessage={this.state.showMessage}
                 />
               }
             />
@@ -157,6 +163,7 @@ class App extends Component {
                       prices={product.prices}
                       cart={this.state.cartItems}
                       onAdd={this.onAdd}
+                      showMessage={this.state.showMessage}
                     />
                   }
                 />

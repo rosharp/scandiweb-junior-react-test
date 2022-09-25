@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import parse from "html-react-parser";
+import Alert from "./Alert";
 
 class Product extends Component {
   constructor(props) {
@@ -245,6 +246,7 @@ class Product extends Component {
 
           {parse(this.props.description)}
         </div>
+          { this.props.showMessage ? <Alert /> : null }
       </div>
     );
   }
