@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import { ProductsContext } from "./ProductsContext";
 import Minicart from "./Minicart";
+import ClickOutsideWrapper from "./ClickOutsideWrapper";
 
 import CurrencyDropdown from "./CurrencyDropdown";
 
@@ -46,22 +47,36 @@ class Navbar extends Component {
 
         <ul>
           <li>
-            <CurrencyDropdown
-              currency={this.props.currency}
-              setCurrency={this.props.setCurrency}
-              dataValue={this.props.dataValue}
-            />
+            <ClickOutsideWrapper
+              method={this.props.toggleCurrency}
+              status={this.props.showCurrencySwitch}
+            >
+              <CurrencyDropdown
+                currency={this.props.currency}
+                setCurrency={this.props.setCurrency}
+                toggleCurrency={this.props.toggleCurrency}
+                showCurrencySwitch={this.props.showCurrencySwitch}
+                dataValue={this.props.dataValue}
+              />
+            </ClickOutsideWrapper>
           </li>
           <li>
-            <Minicart
-              currency={this.props.currency}
-              dataValue={this.props.dataValue}
-              cart={this.props.cart}
-              onAdd={this.props.onAdd}
-              onQtyDecrease={this.props.onQtyDecrease}
-              onQtyIncrease={this.props.onQtyIncrease}
-              onCartItemDelete={this.props.onCartItemDelete}
-            />
+            <ClickOutsideWrapper
+                method={this.props.toggleMinicart}
+                status={this.props.showMinicart}
+            >
+              <Minicart
+                currency={this.props.currency}
+                dataValue={this.props.dataValue}
+                cart={this.props.cart}
+                showMinicart={this.props.showMinicart}
+                toggleMinicart={this.props.toggleMinicart}
+                onAdd={this.props.onAdd}
+                onQtyDecrease={this.props.onQtyDecrease}
+                onQtyIncrease={this.props.onQtyIncrease}
+                onCartItemDelete={this.props.onCartItemDelete}
+              />
+            </ClickOutsideWrapper>
           </li>
         </ul>
       </nav>

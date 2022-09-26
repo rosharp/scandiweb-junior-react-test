@@ -11,6 +11,8 @@ class App extends Component {
     super();
     this.handleClick = this.handleClick.bind(this);
     this.handleCurrency = this.handleCurrency.bind(this);
+    this.toggleCurrency = this.toggleCurrency.bind(this);
+    this.toggleMinicart = this.toggleMinicart.bind(this);
     this.onAdd = this.onAdd.bind(this);
     this.onQtyIncrease = this.onQtyIncrease.bind(this);
     this.onQtyDecrease = this.onQtyDecrease.bind(this);
@@ -19,8 +21,10 @@ class App extends Component {
     this.state = {
       category: "all",
       currency: "USD",
+      showCurrencySwitch: false,
       cartItems: [],
       showMessage: false,
+      showMinicart: false,
     };
   }
 
@@ -28,8 +32,19 @@ class App extends Component {
     this.setState({ category: e.target.innerHTML });
   }
 
+  toggleCurrency() {
+    this.setState({
+      showCurrencySwitch: this.state.showCurrencySwitch ? false : true,
+    });
+  }
+
   handleCurrency(e) {
     this.setState({ currency: e.target.innerHTML });
+  }
+
+  toggleMinicart() {
+    this.setState({ showMinicart: this.state.showMinicart ? false : true });
+    console.log(this.state);
   }
 
   onAdd(product) {
@@ -112,9 +127,13 @@ class App extends Component {
           setCategory={this.handleClick}
           category={this.state.category}
           setCurrency={this.handleCurrency}
+          toggleCurrency={this.toggleCurrency}
+          showCurrencySwitch={this.state.showCurrencySwitch}
           currency={this.state.currency}
           dataValue={data}
           cart={this.state.cartItems}
+          showMinicart={this.state.showMinicart}
+          toggleMinicart={this.toggleMinicart}
           onAdd={this.onAdd}
           onQtyDecrease={this.onQtyDecrease}
           onQtyIncrease={this.onQtyIncrease}

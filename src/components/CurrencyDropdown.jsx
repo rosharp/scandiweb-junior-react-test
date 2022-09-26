@@ -1,26 +1,12 @@
 import React, { Component } from "react";
 
 class CurrencyDropdown extends Component {
-  constructor(props) {
-    super(props);
-    this.handleChange = this.handleChange.bind(this);
-    this.state = {
-      showCurrencySwitch: false,
-    };
-  }
-
-  handleChange() {
-    this.setState({
-      showCurrencySwitch: this.state.showCurrencySwitch ? false : true,
-    });
-  }
-
   render() {
     const data = this.props.dataValue;
     return (
       <div className="currency-dropdown">
-        <button onClick={this.handleChange}>$</button>
-        {this.state.showCurrencySwitch ? (
+        <button onClick={this.props.toggleCurrency}>$</button>
+        {this.props.showCurrencySwitch ? (
           <ul className="currency-dropdown-list">
             {data.categories[0].products[0].prices.map((p, index) => {
               return (
