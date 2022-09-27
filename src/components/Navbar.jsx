@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import { ProductsContext } from "./ProductsContext";
 import Minicart from "./Minicart";
 import ClickOutsideWrapper from "./ClickOutsideWrapper";
+import aLogo from "../images/a-logo.svg";
 
 import CurrencyDropdown from "./CurrencyDropdown";
 
@@ -45,7 +46,9 @@ class Navbar extends Component {
           );
         })}
 
-        <ul>
+        <img className="a-logo" src={aLogo} alt="a-logo"/>
+
+        <ul className="nav-end">
           <li>
             <ClickOutsideWrapper
               method={this.props.toggleCurrency}

@@ -1,10 +1,11 @@
-import React, { Component, PureComponent, useState, useContext } from "react";
+import React, { Component } from "react";
 import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
 import Home from "./components/Home";
 import Navbar from "./components/Navbar";
 import Product from "./components/Product";
 import Cart from "./components/Cart";
 import withQuery from "./apollo/data";
+import Overlay from "./components/Overlay";
 
 class App extends Component {
   constructor() {
@@ -38,13 +39,12 @@ class App extends Component {
     });
   }
 
-  handleCurrency(e) {
-    this.setState({ currency: e.target.innerHTML });
+  handleCurrency(currency) {
+    this.setState({ currency: currency });
   }
 
   toggleMinicart() {
     this.setState({ showMinicart: this.state.showMinicart ? false : true });
-    console.log(this.state);
   }
 
   onAdd(product) {
@@ -122,82 +122,84 @@ class App extends Component {
   render() {
     const data = this.props.dataValue;
     return data ? (
-      <Router>
-        <Navbar
-          setCategory={this.handleClick}
-          category={this.state.category}
-          setCurrency={this.handleCurrency}
-          toggleCurrency={this.toggleCurrency}
-          showCurrencySwitch={this.state.showCurrencySwitch}
-          currency={this.state.currency}
-          dataValue={data}
-          cart={this.state.cartItems}
-          showMinicart={this.state.showMinicart}
-          toggleMinicart={this.toggleMinicart}
-          onAdd={this.onAdd}
-          onQtyDecrease={this.onQtyDecrease}
-          onQtyIncrease={this.onQtyIncrease}
-          onCartItemDelete={this.onCartItemDelete}
-        />
-
-        <Routes>
-          <Route
-            path="/"
-            element={
-              <Home
-                category={this.state.category}
-                currency={this.state.currency}
-                dataValue={this.props.dataValue}
-                onAdd={this.onAdd}
-                showMessage={this.state.showMessage}
-              />
-            }
+      <Overlay trigger={this.state.showMinicart}>
+        <Router >
+          <Navbar
+            setCategory={this.handleClick}
+            category={this.state.category}
+            setCurrency={this.handleCurrency}
+            toggleCurrency={this.toggleCurrency}
+            showCurrencySwitch={this.state.showCurrencySwitch}
+            currency={this.state.currency}
+            dataValue={data}
+            cart={this.state.cartItems}
+            showMinicart={this.state.showMinicart}
+            toggleMinicart={this.toggleMinicart}
+            onAdd={this.onAdd}
+            onQtyDecrease={this.onQtyDecrease}
+            onQtyIncrease={this.onQtyIncrease}
+            onCartItemDelete={this.onCartItemDelete}
           />
 
-          <Route
-            path="/cart"
-            element={
-              <Cart
-                dataValue={this.props.dataValue}
-                cart={this.state.cartItems}
-                onAdd={this.onAdd}
-                currency={this.state.currency}
-                onQtyDecrease={this.onQtyDecrease}
-                onQtyIncrease={this.onQtyIncrease}
-                onCartItemDelete={this.onCartItemDelete}
-              />
-            }
-          />
-
-          {data.categories
-            .filter((category) => category.name === "all")[0]
-            .products.map((product, index) => {
-              return (
-                <Route
-                  key={index}
-                  path={"/products/" + product.id}
-                  element={
-                    <Product
-                      id={product.id}
-                      name={product.name}
-                      brand={product.brand}
-                      category={product.category}
-                      attributes={product.attributes}
-                      description={product.description}
-                      gallery={product.gallery}
-                      inStock={product.inStock}
-                      currency={this.state.currency}
-                      prices={product.prices}
-                      cart={this.state.cartItems}
-                      onAdd={this.onAdd}
-                      showMessage={this.state.showMessage}
-                    />
-                  }
+          <Routes>
+            <Route
+              path="/"
+              element={
+                <Home
+                  category={this.state.category}
+                  currency={this.state.currency}
+                  dataValue={this.props.dataValue}
+                  onAdd={this.onAdd}
+                  showMessage={this.state.showMessage}
                 />
-              );
-            })}
-        </Routes>
-      </Router>
+              }
+            />
+
+            <Route
+              path="/cart"
+              element={
+                <Cart
+                  dataValue={this.props.dataValue}
+                  cart={this.state.cartItems}
+                  onAdd={this.onAdd}
+                  currency={this.state.currency}
+                  onQtyDecrease={this.onQtyDecrease}
+                  onQtyIncrease={this.onQtyIncrease}
+                  onCartItemDelete={this.onCartItemDelete}
+                />
+              }
+            />
+
+            {data.categories
+              .filter((category) => category.name === "all")[0]
+              .products.map((product, index) => {
+                return (
+                  <Route
+                    key={index}
+                    path={"/products/" + product.id}
+                    element={
+                      <Product
+                        id={product.id}
+                        name={product.name}
+                        brand={product.brand}
+                        category={product.category}
+                        attributes={product.attributes}
+                        description={product.description}
+                        gallery={product.gallery}
+                        inStock={product.inStock}
+                        currency={this.state.currency}
+                        prices={product.prices}
+                        cart={this.state.cartItems}
+                        onAdd={this.onAdd}
+                        showMessage={this.state.showMessage}
+                      />
+                    }
+                  />
+                );
+              })}
+          </Routes>
+        </Router>
+      </Overlay>
     ) : (
       <h1>Loading...</h1>
     );

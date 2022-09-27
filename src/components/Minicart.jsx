@@ -1,6 +1,9 @@
 import React, { Component } from "react";
+import { Link } from "react-router-dom";
 import Cart from "./Cart";
-import emptyCart from "../images/empty-cart.svg";
+import ImagesSlider from "./ImagesSlider";
+import Overlay from "./Overlay";
+import emptyCartDark from "../images/empty-cart-dark.svg";
 import plus from "../images/plus.svg";
 import minus from "../images/minus.svg";
 
@@ -9,7 +12,6 @@ export default class Minicart extends Cart {
     super(props);
     this.totalPrice = this.totalPrice.bind(this);
   }
-
 
   totalPrice() {
     let totalPrice = 0;
@@ -30,7 +32,7 @@ export default class Minicart extends Cart {
     return (
       <div>
         <button onClick={this.props.toggleMinicart}>
-          <img src={emptyCart} alt="empty-cart" />
+          <img src={emptyCartDark} alt="empty-cart" />
         </button>
         {this.props.showMinicart ? (
           <div className="cart minicart">
@@ -88,6 +90,8 @@ export default class Minicart extends Cart {
                       <img src={minus} />
                     </button>
                   </div>
+
+                  <ImagesSlider item={item} index={index} cart={this.props.cart} />
                 </div>
               );
             })}
@@ -95,6 +99,12 @@ export default class Minicart extends Cart {
             <div className="cart-total-container">
               <p>Total:</p>
               {<p>{this.totalPrice()}</p>}
+              <Link to="/cart">
+                <button onClick={this.props.toggleMinicart}>View Bag</button>
+              </Link>
+              <Link to="/checkout">
+                <button onClick={this.props.toggleMinicart}>Checkout</button>
+              </Link>
             </div>
           </div>
         ) : null}

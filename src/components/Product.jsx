@@ -198,7 +198,7 @@ class Product extends Component {
                 <h3>Price:</h3>
                 <p key={index} className="price-tag">
                   <span>{price.currency.symbol}</span>
-                  {price.amount}
+                  {parseFloat(price.amount)}
                 </p>
               </div>
               );

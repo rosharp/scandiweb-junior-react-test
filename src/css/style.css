@@ -46,7 +46,6 @@ h1 {
 h3 {
   font-size: 18px;
   font-weight: 300;
-  line-height: 0;
 }
 
 a {
@@ -75,22 +74,31 @@ label {
 }
 
 body {
+  position: relative;
   background-color: #f8f8f9;
   margin: 0 auto;
-  max-width: 1200px;
+  max-width: 1500px;
+  z-index: 1;
+}
+
+.a-logo {
+  margin-inline: auto;
+  padding-right: 5rem;
 }
 
 .overlay {
-  position: fixed;
-  display: block;
-  width: 100%;
-  height: 100%;
+  position: absolute;
   top: 0;
   left: 0;
   right: 0;
   bottom: 0;
   background-color: rgba(0, 0, 0, 0.5);
-  cursor: pointer;
+  z-index: 9999;
+}
+
+.img-reversed {
+  -webkit-transform: scaleY(-1);
+  transform: scaleY(-1);
 }
 
 .price-tag {
@@ -247,19 +255,34 @@ nav li > a.active-nav::after {
   margin-top: 1rem;
   background: #5ece7b;
 }
-nav .nav-end {
+nav .nav-end button {
+  border: none;
+  background: inherit;
+  color: #1d1f22;
+  margin-inline: 1rem;
+}
+nav .currency-dropdown .currency-button {
   display: flex;
-  justify-content: flex-end;
-  margin-inline: auto;
+}
+nav .currency-dropdown .currency-button img {
+  max-width: 0.8rem;
+}
+nav .currency-dropdown .currency-button > * {
+  padding-inline: 0.2rem;
 }
 nav .currency-dropdown .currency-dropdown-list {
   position: absolute;
+  filter: drop-shadow(0 0.2rem 0.1rem rgba(0, 0, 0, 0.1));
   display: flex;
   flex-direction: column;
   background-color: #ffffff;
-  filter: drop-shadow(0 0.2rem 0.1rem rgba(0, 0, 0, 0.025));
   list-style: none;
   padding-inline-start: 0;
+  z-index: 9997;
+}
+nav .currency-dropdown .currency-dropdown-list li:hover {
+  background-color: #e5e5e5;
+  cursor: pointer;
 }
 nav .currency-dropdown .currency-dropdown-list span {
   padding-inline-start: 0.2rem;
@@ -268,16 +291,15 @@ nav .currency-dropdown .currency-dropdown-list > * {
   padding-inline: 1rem;
   padding-block: 0.5rem;
 }
-nav > * {
-  margin-inline: 1rem;
-}
 
 .minicart {
+  right: 0;
   position: absolute;
   display: flex;
   z-index: 9999;
   max-height: 30rem;
   width: 25rem;
+  padding: 0 1rem 1rem 1rem;
   overflow: auto;
   flex-direction: column;
   background-color: #ffffff;
@@ -407,18 +429,21 @@ nav > * {
   display: flex;
   flex-direction: row;
 }
-.product-img-container .img-active {
+.product-img-container img {
   display: flex;
+  background: #ffffff;
+}
+.product-img-container .img-active {
   justify-content: flex-end;
   width: 25rem;
   margin-left: 2rem;
 }
 .product-img-container .img-inactive {
-  display: flex;
   justify-content: flex-start;
   flex-direction: column;
-  padding-bottom: 1rem;
+  margin-bottom: 1rem;
   width: 3rem;
+  filter: drop-shadow(0 0.2rem 0.1rem rgba(0, 0, 0, 0.05));
 }
 .product-img-container .product-img {
   max-width: 25rem;

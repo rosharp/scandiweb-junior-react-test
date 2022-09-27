@@ -1,12 +1,8 @@
 import React, { Component } from "react";
 
-/**
- * Component that alerts if you click outside of it
- */
 export default class ClickOutsideWrapper extends Component {
   constructor(props) {
     super(props);
-
     this.wrapperRef = React.createRef();
     this.handleClickOutside = this.handleClickOutside.bind(this);
   }
@@ -19,9 +15,6 @@ export default class ClickOutsideWrapper extends Component {
     document.removeEventListener("mousedown", this.handleClickOutside);
   }
 
-  /**
-   * Alert if clicked on outside of element
-   */
   handleClickOutside(event) {
     if (this.wrapperRef && !this.wrapperRef.current.contains(event.target)) {
       if (this.props.status) {
