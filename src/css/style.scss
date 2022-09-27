@@ -94,8 +94,16 @@ body {
   position: relative;
   background-color: $clr-neutral-110;
   margin: 0 auto;
-  max-width: 1500px;
   z-index: 1;
+}
+
+nav,
+.products,
+.category-title,
+.product-container,
+.cart {
+  max-width: 1200px;
+  margin-inline: auto;
 }
 
 .a-logo {
@@ -103,14 +111,20 @@ body {
   padding-right: 5rem;
 }
 
+.main {
+  display: relative;
+}
+
 .overlay {
-  position: absolute;
+  display: block;
   top: 0;
+  bottom: 0;
   left: 0;
   right: 0;
-  bottom: 0;
+  width: 100%;
+  height: 100%;
   background-color: rgba(0,0,0,0.5);
-  z-index: 9999;
+  z-index: 9998;
 }
 
 .img-reversed {
@@ -223,6 +237,16 @@ body {
   transform: scale(0.99);
 }
 
+.button-outline {
+  border: 1px solid $c-black;
+  background-color: $clr-neutral-100;
+}
+
+.checkout-btn {
+  @extend .button-submit;
+  width: 8rem;
+}
+
 .empty-cart-btn {
   transition: 300ms ease-in-out;
   border: none;
@@ -319,11 +343,11 @@ nav {
 }
 
 .minicart {
-     right: 0;
      position: absolute;
+     right: 1rem;
      display: flex;
      z-index: 9999;
-     max-height: 30rem;
+     max-height: 35rem;
      width: 25rem;
      padding: 0 1rem 1rem 1rem;
      overflow: auto;

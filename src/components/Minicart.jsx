@@ -2,7 +2,6 @@ import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import Cart from "./Cart";
 import ImagesSlider from "./ImagesSlider";
-import Overlay from "./Overlay";
 import emptyCartDark from "../images/empty-cart-dark.svg";
 import plus from "../images/plus.svg";
 import minus from "../images/minus.svg";
@@ -99,12 +98,14 @@ export default class Minicart extends Cart {
             <div className="cart-total-container">
               <p>Total:</p>
               {<p>{this.totalPrice()}</p>}
-              <Link to="/cart">
-                <button onClick={this.props.toggleMinicart}>View Bag</button>
+              <div>
+                <Link className="button-outline" to="/cart">
+                <button  onClick={this.props.toggleMinicart}>View Bag</button>
               </Link>
-              <Link to="/checkout">
+              <Link id="checkout-btn" className="checkout-btn" to="/checkout">
                 <button onClick={this.props.toggleMinicart}>Checkout</button>
-              </Link>
+              </Link>              
+            </div>
             </div>
           </div>
         ) : null}
