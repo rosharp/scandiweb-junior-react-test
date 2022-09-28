@@ -67,6 +67,7 @@ class Product extends Component {
         "TouchID": e.target.value === "Yes" ? "Yes" : "No",
       },
     });
+    console.log(e.target)
   }
 
   render() {
@@ -92,12 +93,12 @@ class Product extends Component {
                       <div className="product-size button">
                         <input
                           type="radio"
-                          id={att.id}
+                          id={`size-capacity-${att.id}`}
                           name="size-capacity"
                           value={att.value}
                           onChange={this.handleSizeOrCapacity}
                         />
-                        <label htmlFor={att.id}>{att.value}</label>
+                        <label htmlFor={`size-capacity-${att.id}`}>{att.value}</label>
                       </div>
                     </div>
                   );
@@ -119,13 +120,13 @@ class Product extends Component {
                       <div className="product-color button-clr">
                         <input
                           type="radio"
-                          id={att.id}
+                          id={`color-${att.id}`}
                           name="color"
                           value={att.value}
                           onChange={this.handleColor}
 
                         />
-                        <label htmlFor={att.id} style={{ backgroundColor: `${att.value}`}}></label>
+                        <label htmlFor={`color-${att.id}`} style={{ backgroundColor: `${att.value}`}}></label>
                           
                       </div>
                     </div>
@@ -149,12 +150,12 @@ class Product extends Component {
                       <div className="product-usb3 button">
                         <input
                           type="radio"
-                          id={att.id}
+                          id={`usb3-${att.id}`}
                           name="usb3"
                           value={att.value}
                           onChange={this.handlePorts}
                         />
-                        <label htmlFor={att.id}>{att.value}</label>
+                        <label htmlFor={`usb3-${att.id}`}>{att.value}</label>
                       </div>
                     </div>
                   );
@@ -177,12 +178,12 @@ class Product extends Component {
                       <div className="product-touchid button">
                         <input
                           type="radio"
-                          id={att.id}
+                          id={`touchid-${att.id}`}
                           name="touchid"
                           value={att.value}
                           onChange={this.handleTouchId}
                         />
-                        <label htmlFor={att.id}>{att.value}</label>
+                        <label htmlFor={`touchid-${att.id}`}>{att.value}</label>
                       </div>
                     </div>
                   );

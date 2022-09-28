@@ -58,7 +58,7 @@ class App extends Component {
       this.setState({
         cartItems: this.state.cartItems.map((item) =>
           item.id === product.id &&
-          JSON.stringify(item.chars) === JSON.stringify(product.chars)
+            JSON.stringify(item.chars) === JSON.stringify(product.chars)
             ? { ...exist, qty: exist.qty + 1 }
             : item
         ),
@@ -102,9 +102,9 @@ class App extends Component {
         cartItems: this.state.cartItems.map((item) =>
           item.name === product.name && item.chars === product.chars
             ? {
-                ...exist,
-                qty: exist.qty > 1 ? exist.qty - 1 : 1,
-              }
+              ...exist,
+              qty: exist.qty > 1 ? exist.qty - 1 : 1,
+            }
             : item
         ),
       });
@@ -122,9 +122,8 @@ class App extends Component {
   render() {
     const data = this.props.dataValue;
     return (
-      <div className="main">
-        {data ? (
-          <Overlay trigger={this.state.showMinicart}>
+        <div className="main">
+          {data ? (
             <Router>
               <Navbar
                 setCategory={this.handleClick}
@@ -201,11 +200,10 @@ class App extends Component {
                   })}
               </Routes>
             </Router>
-          </Overlay>
-        ) : (
-          <h1>Loading...</h1>
-        )}
-      </div>
+          ) : (
+            <h1>Loading...</h1>
+          )}
+        </div>
     );
   }
 }
