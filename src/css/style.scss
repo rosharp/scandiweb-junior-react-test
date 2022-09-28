@@ -38,6 +38,9 @@ $c-black: #1d1f22;
     }
 }
 
+html, body {
+  height: 100%;
+}
 
 a,
 h1,
@@ -90,6 +93,7 @@ label {
   flex: none;
 }
 
+
 body {
   position: relative;
   background-color: $clr-neutral-110;
@@ -109,20 +113,13 @@ nav,
   margin-inline: auto;
 }
 
-.a-logo {
-  margin-inline: auto;
-  padding-right: 5rem;
-}
-
-.main {
-  display: relative;
-}
-
 .overlay {
-  position: absolute;
-  background: rgba(0,0,0,0.5);
-  z-index: 9999;
+  position: fixed;
+  margin-top: 5rem;
+  background: rgba(57, 55, 72, 0.22);
+  z-index: 9998;
   inset: 0;
+
 }
 
 .img-reversed {
@@ -275,6 +272,8 @@ nav {
   display: flex;
   text-transform: uppercase;
   padding-top: 1rem;
+  z-index: 9999;
+  height: 5rem;
 
   li {
     list-style-type: none;
@@ -295,7 +294,7 @@ nav {
     content: "";
     display: block;
     margin: auto;
-    margin-top: 1rem;
+    margin-top: 1.5rem;
     height: 3px;
     width: 0;
     top: 5px;
@@ -306,8 +305,14 @@ nav {
   li > a:hover::after,
   li > a.active-nav::after {
     width: 100%;
-    margin-top: 1rem;
+    margin-top: 1.5rem;
     background: $clr-accent-300;
+  }
+
+  .a-logo {
+    margin-inline: auto;
+    padding-right: 5rem;
+    max-width: 7.5rem;
   }
 
   .nav-end {
@@ -362,12 +367,13 @@ nav {
 .minicart {
      position: absolute;
      right: 15rem;
+     top: 5rem;
      z-index: 9999;
      max-height: 40rem;
      width: 20rem;
      padding: 0 1rem 1rem 1rem;
      overflow: auto;
-     background-color: $clr-neutral-100;
+     background-color: $clr-neutral-110;
      filter: drop-shadow(0 0.2rem 0.1rem rgba(0, 0, 0, 0.025));
 }
 
@@ -508,7 +514,20 @@ nav {
   }
 
   .product-props {
-    max-width: 15rem;
+    max-width: 20rem;
+    
+    label {
+      cursor: pointer;
+    }
+    
+    h3 {
+      line-height: 0;
+    }
+    
+    .button-submit {
+      display: block;
+      margin-bottom: 1rem;
+    }
   }
 
   .product-chars {
@@ -543,6 +562,7 @@ nav {
     margin-bottom: 1rem;
     width: 3rem;
     filter: drop-shadow(0 0.2rem 0.1rem rgba(0, 0, 0, 0.05));
+    cursor: pointer;
   }
 
   .product-img {
