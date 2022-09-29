@@ -102,12 +102,12 @@ export default class Minicart extends Cart {
               {<p>{this.totalPrice()}</p>}
               <div className="button-container">
                 <Link onClick={this.props.toggleMinicart} className="button-outline" to="/cart">
-                <button>View Bag</button>
-              </Link>
-              <Link onClick={this.props.toggleMinicart} id="checkout-btn" className="checkout-btn" to="/checkout">
-                <button>Checkout</button>
-              </Link>              
-            </div>
+                  <button>View Bag</button>
+                </Link>
+                <Link onClick={this.props.toggleMinicart} id="checkout-btn" className="checkout-btn" to="/checkout">
+                  <button>Checkout</button>
+                </Link>
+              </div>
             </div>
           </div>
         ) : null}

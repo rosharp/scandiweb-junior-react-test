@@ -98,6 +98,7 @@ nav,
 
 .overlay {
   position: fixed;
+  overflow: hidden;
   margin-top: 5rem;
   background: rgba(57, 55, 72, 0.22);
   z-index: 9998;
@@ -259,7 +260,6 @@ nav {
   display: flex;
   text-transform: uppercase;
   padding-top: 1rem;
-  z-index: 9999;
   height: 5rem;
 }
 nav li {

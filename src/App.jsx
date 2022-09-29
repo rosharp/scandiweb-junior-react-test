@@ -45,6 +45,7 @@ class App extends Component {
 
   toggleMinicart() {
     this.setState({ showMinicart: this.state.showMinicart ? false : true });
+    this.state.showMinicart ? document.body.style.overflow = 'unset': document.body.style.overflow = 'hidden'
   }
 
   onAdd(product) {
