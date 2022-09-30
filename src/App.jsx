@@ -22,6 +22,7 @@ class App extends Component {
     this.state = {
       category: "all",
       currency: "USD",
+      currencySymbol: "$",
       showCurrencySwitch: false,
       cartItems: [],
       showMessage: false,
@@ -39,8 +40,8 @@ class App extends Component {
     });
   }
 
-  handleCurrency(currency) {
-    this.setState({ currency: currency });
+  handleCurrency(currency, currencySymbol) {
+    this.setState({ currency: currency, currencySymbol: currencySymbol });
   }
 
   toggleMinicart() {
@@ -133,6 +134,7 @@ class App extends Component {
                 toggleCurrency={this.toggleCurrency}
                 showCurrencySwitch={this.state.showCurrencySwitch}
                 currency={this.state.currency}
+                currencySymbol={this.state.currencySymbol}
                 dataValue={data}
                 cart={this.state.cartItems}
                 showMinicart={this.state.showMinicart}
@@ -165,6 +167,7 @@ class App extends Component {
                       cart={this.state.cartItems}
                       onAdd={this.onAdd}
                       currency={this.state.currency}
+                      currencySymbol={this.state.currencySymbol}
                       onQtyDecrease={this.onQtyDecrease}
                       onQtyIncrease={this.onQtyIncrease}
                       onCartItemDelete={this.onCartItemDelete}

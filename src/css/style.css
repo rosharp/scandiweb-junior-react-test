@@ -341,11 +341,47 @@ nav .currency-dropdown .currency-dropdown-list > * {
   top: 5rem;
   z-index: 9999;
   max-height: 40rem;
-  width: 20rem;
+  width: 22rem;
   padding: 0 1rem 1rem 1rem;
   overflow: auto;
   background-color: #f8f8f9;
   filter: drop-shadow(0 0.2rem 0.1rem rgba(0, 0, 0, 0.025));
+  text-transform: none;
+}
+.minicart .cart-chars {
+  max-width: 10rem;
+}
+.minicart .cart-total-container {
+  display: flex;
+  margin-block: 1rem;
+}
+.minicart .cart-total-container span {
+  justify-self: flex-start;
+  margin-inline: auto;
+}
+.minicart .cart-total-container b {
+  justify-self: flex-end;
+  margin-inline: auto;
+}
+.minicart h2, .minicart h3, .minicart h4 {
+  font-size: 16px;
+  line-height: 0.8;
+}
+.minicart h2 > span {
+  font-weight: normal;
+}
+.minicart p {
+  font-family: "Raleway", sans-serif;
+  font-weight: 500;
+}
+.minicart .button, .minicart .increase-qty,
+.minicart .decrease-qty {
+  max-width: 2rem;
+  max-height: 2rem;
+}
+.minicart .button label, .minicart .increase-qty label,
+.minicart .decrease-qty label {
+  font-size: 14px;
 }
 
 .cart .cart-items-container {
@@ -395,8 +431,9 @@ nav .currency-dropdown .currency-dropdown-list > * {
   justify-content: flex-start;
   margin: auto;
 }
-.cart .cart-total-container {
+.cart #cart-total {
   border-top: 1px solid #e5e5e5;
+  display: block;
 }
 
 .category-title {
@@ -406,6 +443,10 @@ nav .currency-dropdown .currency-dropdown-list > * {
 .products {
   display: grid;
   gap: 2rem;
+}
+.products h3 {
+  padding-top: 1rem;
+  line-height: 0;
 }
 .products img {
   object-fit: cover;

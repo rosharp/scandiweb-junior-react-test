@@ -2,7 +2,6 @@ import React, { Component } from "react";
 import prev from "../images/prev.svg";
 import next from "../images/next.svg";
 
-
 export default class ImagesSlider extends Component {
   constructor(props) {
     super(props);
@@ -54,15 +53,18 @@ export default class ImagesSlider extends Component {
         <img
           className="cart-product-img"
           src={item.gallery[parseInt(Object.values(this.state.images[index]))]}
+          alt="product"
         />
-        <div className="cart-img-btn">
-          <button onClick={() => this.handlePrevImg(index, item)}>
-            <img src={prev} />
-          </button>
-          <button onClick={() => this.handleNextImg(index, item)}>
-            <img src={next} />
-          </button>
-        </div>
+        {this.props.sliderButtons ? (
+          <div className="cart-img-btn">
+            <button onClick={() => this.handlePrevImg(index, item)}>
+              <img src={prev} alt="previous" />
+            </button>
+            <button onClick={() => this.handleNextImg(index, item)}>
+              <img src={next} alt="next" />
+            </button>
+          </div>
+        ) : null}
       </div>
     );
   }

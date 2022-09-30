@@ -17,7 +17,7 @@ class Products extends Component {
       gallery: {},
       chars: {},
       index: 0,
-      attributes: {}
+      attributes: {},
     };
   }
 
@@ -79,7 +79,7 @@ class Products extends Component {
                       className="empty-cart-btn"
                       onClick={(e) => this.handleAddToCart(e, product)}
                     >
-                      <img src={emptyCart} />
+                      <img src={emptyCart} alt="cart" />
                     </button>
                   </div>
                   <h3>{product.name}</h3>
@@ -90,15 +90,13 @@ class Products extends Component {
                     .map((price, index) => {
                       return (
                         <label key={index}>
-                          {price.amount}
                           <span>{price.currency.symbol}</span>
+                          {price.amount}
                         </label>
                       );
                     })}
                 </div>
-                {
-                  this.props.showMessage ? <Alert /> : null
-                }
+                {this.props.showMessage ? <Alert /> : null}
               </Link>
             );
           })}

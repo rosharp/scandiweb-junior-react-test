@@ -70,6 +70,7 @@ class Navbar extends Component {
             >
               <Minicart
                 currency={this.props.currency}
+                currencySymbol={this.props.currencySymbol}
                 dataValue={this.props.dataValue}
                 cart={this.props.cart}
                 showMinicart={this.props.showMinicart}

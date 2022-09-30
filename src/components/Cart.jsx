@@ -20,7 +20,7 @@ class Cart extends Component {
           (price) => price.currency.label === this.props.currency
         )[0].amount * item.qty;
     });
-    return parseFloat(totalPrice.toFixed(2)) + " " + this.props.currency;
+    return this.props.currencySymbol + parseFloat(totalPrice.toFixed(2));
   }
 
   componentWillUnmount() {
@@ -120,15 +120,23 @@ class Cart extends Component {
                 </button>
               </div>
 
-              <ImagesSlider item={item} index={index} cart={this.props.cart} />
+              <ImagesSlider
+                item={item}
+                index={index}
+                cart={this.props.cart}
+                sliderButtons={true}
+              />
             </div>
           );
         })}
 
-        <div className="cart-total-container">
-          <p>Total:</p>
-          {<p>{this.totalPrice()}</p>}
+        <div id="cart-total" className="cart-total-container">
+          <div><span>Total:</span><b>{this.totalPrice()}</b></div>
+          <div><span>Quantity:</span><b>{this.props.cart.length}</b></div>
+          <div><span>Tax 21%:</span>{this.totalPrice()}</div>
         </div>
+
+        <button className="button-submit">Order</button>
       </div>
     );
   }

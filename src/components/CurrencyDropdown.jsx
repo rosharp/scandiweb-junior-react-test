@@ -25,7 +25,7 @@ class CurrencyDropdown extends Component {
                 <li
                   key={index}
                   onClick={() =>
-                    this.props.setCurrency(p.currency.label) &
+                    this.props.setCurrency(p.currency.label, p.currency.symbol) &
                     this.props.toggleCurrency()
                   }
                 >
