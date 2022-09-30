@@ -403,7 +403,6 @@ nav .currency-dropdown .currency-dropdown-list > * {
 }
 .cart .cart-img-container .cart-img-btn {
   position: absolute;
-  bottom: 1em;
   right: 0;
 }
 .cart .cart-img-container .cart-img-btn button {

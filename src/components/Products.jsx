@@ -66,7 +66,7 @@ class Products extends Component {
               <Link
                 key={index}
                 to={"/products/" + product.id}
-                className="product"
+                className={product.inStock ? "product" : "product out-of-stock"}
               >
                 <div>
                   <div className="home-img-container">
