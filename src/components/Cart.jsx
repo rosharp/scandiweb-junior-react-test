@@ -14,10 +14,6 @@ class Cart extends Component {
 
   totalPrice() {
     let totalPrice = 0;
-    let currentCurrency = this.props.cart[0]?.prices.filter(
-      (price) => price.currency.label === this.props.currency
-    )[0].currency.symbol;
-
     this.props.cart.forEach((item) => {
       totalPrice +=
         item.prices.filter(
@@ -32,15 +28,12 @@ class Cart extends Component {
   }
 
   render() {
-    const data = this.props.dataValue;
-
     return (
       <div className="cart">
         <h1>Cart</h1>
         {this.props.cart.map((item, index) => {
           return (
             <div key={index} className="cart-items-container">
-              {console.log(item)}
               <div className="cart-chars">
                 <h2>{item.brand}</h2>
                 <h3>{item.name}</h3>
@@ -65,11 +58,8 @@ class Cart extends Component {
                         {item.attributes
                           .filter((att) => att.name === char)[0]
                           ?.items.map((i, index) => {
-                            console.log(
-                              item.attributes.filter((att) => att.name === char)
-                            );
                             return (
-                              <>
+                              <div key={index}>
                                 {char !== "Color" ? (
                                   <div className="button">
                                     {i.value === value ? (
@@ -101,7 +91,7 @@ class Cart extends Component {
                                     )}
                                   </div>
                                 )}
-                              </>
+                              </div>
                             );
                           })}
                       </div>
@@ -115,7 +105,7 @@ class Cart extends Component {
                   className="increase-qty"
                   onClick={() => this.props.onQtyIncrease(item)}
                 >
-                  <img src={plus} />
+                  <img src={plus} alt="plus" />
                 </button>
                 <p>{item.qty}</p>
                 <button
@@ -126,7 +116,7 @@ class Cart extends Component {
                       : this.props.onCartItemDelete(item)
                   }
                 >
-                  <img src={minus} />
+                  <img src={minus} alt="minus" />
                 </button>
               </div>
 

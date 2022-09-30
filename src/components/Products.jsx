@@ -17,6 +17,7 @@ class Products extends Component {
       gallery: {},
       chars: {},
       index: 0,
+      attributes: {}
     };
   }
 
@@ -38,6 +39,7 @@ class Products extends Component {
           gallery: item.gallery,
           chars: chars,
           index: this.randomIndex(),
+          attributes: item.attributes,
         },
         () => {
           item.attributes.map((att) => {
