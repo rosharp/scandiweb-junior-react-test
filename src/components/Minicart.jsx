@@ -15,9 +15,6 @@ export default class Minicart extends Cart {
 
   totalPrice() {
     let totalPrice = 0;
-    let currentCurrency = this.props.cart[0]?.prices.filter(
-      (price) => price.currency.label === this.props.currency
-    )[0].currency.symbol;
 
     this.props.cart.forEach((item) => {
       totalPrice +=

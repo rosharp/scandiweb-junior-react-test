@@ -40,6 +40,7 @@ class Cart extends Component {
         {this.props.cart.map((item, index) => {
           return (
             <div key={index} className="cart-items-container">
+              {console.log(item)}
               <div className="cart-chars">
                 <h2>{item.brand}</h2>
                 <h3>{item.name}</h3>
@@ -59,11 +60,51 @@ class Cart extends Component {
                 {Object.entries(item.chars).map(([char, value], index) => {
                   return (
                     <div key={index}>
-                      {
-                        <p>
-                          {char}: {value}
-                        </p>
-                      }
+                      <h4>{char}:</h4>
+                      <div style={{ display: "flex" }}>
+                        {item.attributes
+                          .filter((att) => att.name === char)[0]
+                          ?.items.map((i, index) => {
+                            console.log(
+                              item.attributes.filter((att) => att.name === char)
+                            );
+                            return (
+                              <>
+                                {char !== "Color" ? (
+                                  <div className="button">
+                                    {i.value === value ? (
+                                      <label
+                                        style={{
+                                          backgroundColor: "black",
+                                          color: "white",
+                                        }}
+                                      >
+                                        {i.value}
+                                      </label>
+                                    ) : (
+                                      <label>{i.value}</label>
+                                    )}
+                                  </div>
+                                ) : (
+                                  <div className="button-clr">
+                                    {i.value === value ? (
+                                      <label
+                                        style={{
+                                          backgroundColor: i.value,
+                                          outline: "2px solid #5ece7b",
+                                        }}
+                                      ></label>
+                                    ) : (
+                                      <label
+                                        style={{ backgroundColor: i.value }}
+                                      ></label>
+                                    )}
+                                  </div>
+                                )}
+                              </>
+                            );
+                          })}
+                      </div>
                     </div>
                   );
                 })}
@@ -92,10 +133,7 @@ class Cart extends Component {
               <ImagesSlider item={item} index={index} cart={this.props.cart} />
             </div>
           );
-
-
         })}
-
 
         <div className="cart-total-container">
           <p>Total:</p>

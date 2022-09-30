@@ -8,7 +8,8 @@ class Product extends Component {
     super(props);
 
     this.toggleActive = this.toggleActive.bind(this);
-    this.handleSizeOrCapacity = this.handleSizeOrCapacity.bind(this);
+    this.handleSize = this.handleSize.bind(this);
+    this.handleCapacity = this.handleCapacity.bind(this);
     this.handleColor = this.handleColor.bind(this);
     this.handlePorts = this.handlePorts.bind(this);
     this.handleTouchId = this.handleTouchId.bind(this);
@@ -23,6 +24,7 @@ class Product extends Component {
       chars: {},
       index: this.randomIndex(),
       item: {},
+      attributes: this.props.attributes
     };
   }
 
@@ -35,10 +37,17 @@ class Product extends Component {
     this.setState({ activeImg: parseInt(e.target.id) });
   }
 
-  handleSizeOrCapacity(e) {
+  handleSize(e) {
     this.setState({
       ...this.state,
       chars: { ...this.state.chars, "Size": e.target.value },
+    });
+  }
+
+  handleCapacity(e) {
+    this.setState({
+      ...this.state,
+      chars: { ...this.state.chars, "Capacity": e.target.value },
     });
   }
 
@@ -54,7 +63,7 @@ class Product extends Component {
       ...this.state,
       chars: {
         ...this.state.chars,
-        "USB-3 Ports": e.target.value === "Yes" ? "Yes" : "No",
+        "With USB 3 ports": e.target.value === "Yes" ? "Yes" : "No",
       },
     });
   }
@@ -64,10 +73,9 @@ class Product extends Component {
       ...this.state,
       chars: {
         ...this.state.chars,
-        "TouchID": e.target.value === "Yes" ? "Yes" : "No",
+        "Touch ID in keyboard": e.target.value === "Yes" ? "Yes" : "No",
       },
     });
-    console.log(e.target)
   }
 
   render() {
@@ -78,14 +86,14 @@ class Product extends Component {
         <div className="product-props">
           <h1>{this.props.brand}</h1>
           <h2>{this.props.name}</h2>
-          <div className="size-capacity-att">
+          <div className="size-att">
             <h3>
               {this.props.attributes
-                .filter((att) => att.name === "Size" || att.name === "Capacity")
+                .filter((att) => att.name === "Size")
                 .map((att) => att.name + ":")}
             </h3>
             {this.props.attributes
-              .filter((att) => att.name === "Size" || att.name === "Capacity")
+              .filter((att) => att.name === "Size")
               .map((att) =>
                 att.items.map((att) => {
                   return (
@@ -93,18 +101,47 @@ class Product extends Component {
                       <div className="product-size button">
                         <input
                           type="radio"
-                          id={`size-capacity-${att.id}`}
-                          name="size-capacity"
+                          id={`size-${att.id}`}
+                          name="size"
                           value={att.value}
-                          onChange={this.handleSizeOrCapacity}
+                          onChange={this.handleSize}
                         />
-                        <label htmlFor={`size-capacity-${att.id}`}>{att.value}</label>
+                        <label htmlFor={`size-${att.id}`}>{att.value}</label>
                       </div>
                     </div>
                   );
                 })
               )}
           </div>
+
+          <div className="capacity-att">
+            <h3>
+              {this.props.attributes
+                .filter((att) => att.name === "Capacity")
+                .map((att) => att.name + ":")}
+            </h3>
+            {this.props.attributes
+              .filter((att) =>  att.name === "Capacity")
+              .map((att) =>
+                att.items.map((att) => {
+                  return (
+                    <div key={att.id} className="product-chars">
+                      <div className="product-size button">
+                        <input
+                          type="radio"
+                          id={`capacity-${att.id}`}
+                          name="capacity"
+                          value={att.value}
+                          onChange={this.handleCapacity}
+                        />
+                        <label htmlFor={`capacity-${att.id}`}>{att.value}</label>
+                      </div>
+                    </div>
+                  );
+                })
+              )}
+          </div>
+
           <div className="color-att">
             <h3>
               {this.props.attributes
