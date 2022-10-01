@@ -1,9 +1,6 @@
 - total alignment
 - plus-minus outline
 - cart image alignment
-- save state on reload
-- quantity in cart fix
 - quantity badge
-- out of stock
 - block buy button on product page if out of stock
 - minicart custom slider

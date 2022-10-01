@@ -101,7 +101,7 @@ nav,
   overflow: hidden;
   margin-top: 5rem;
   background: rgba(57, 55, 72, 0.22);
-  z-index: 9998;
+  z-index: 9996;
   inset: 0;
 }
 
@@ -452,7 +452,7 @@ nav .currency-dropdown .currency-dropdown-list > * {
   text-align: center;
   text-transform: uppercase;
   background-color: rgba(248, 248, 249, 0.4);
-  z-index: 9997;
+  z-index: 9990;
   inset: 0;
 }
 .products .product-overlay p {

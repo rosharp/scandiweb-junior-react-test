@@ -17,6 +17,7 @@ class Alert extends Component {
         textTransform: "uppercase",
         fontWeight: "400",
         animation: "moveToTop 2000ms",
+        zIndex: 9991,
       }}>
           Added item to cart
       </div>
