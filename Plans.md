@@ -1,6 +1,6 @@
 - total alignment
 - plus-minus outline
 - cart image alignment
-- quantity badge
-- block buy button on product page if out of stock
 - minicart custom slider
+- react parser
+- minicart totalQty fix

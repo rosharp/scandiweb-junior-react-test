@@ -378,6 +378,8 @@ nav {
      filter: drop-shadow(0 0.2rem 0.1rem rgba(0, 0, 0, 0.025));
      text-transform: none;
 
+
+
      .cart-chars {
       max-width: 10rem;
      }
@@ -419,6 +421,24 @@ nav {
         font-size: 14px;
       }
      }
+}
+.minicart-icon {
+  position: relative;
+
+  img {
+    width: 1rem;
+  }
+
+  .minicart-qty {
+    font-size: 12px;
+    bottom: 15px;
+    left: 1rem;
+    position: absolute;
+    border-radius: 50%;
+    padding-inline: 8px;
+    background-color: $c-black;
+    color: $clr-neutral-100;
+  }
 }
 
 .cart {
@@ -526,6 +546,8 @@ nav {
   img {
     object-fit: cover;
   }
+
+
 }
 
 .product {

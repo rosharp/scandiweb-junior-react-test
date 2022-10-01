@@ -384,6 +384,23 @@ nav .currency-dropdown .currency-dropdown-list > * {
   font-size: 14px;
 }
 
+.minicart-icon {
+  position: relative;
+}
+.minicart-icon img {
+  width: 1rem;
+}
+.minicart-icon .minicart-qty {
+  font-size: 12px;
+  bottom: 15px;
+  left: 1rem;
+  position: absolute;
+  border-radius: 50%;
+  padding-inline: 8px;
+  background-color: #1d1f22;
+  color: #ffffff;
+}
+
 .cart .cart-items-container {
   display: grid;
   grid-template-columns: repeat(3, 1fr);

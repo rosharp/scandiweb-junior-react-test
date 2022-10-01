@@ -15,7 +15,6 @@ export default class Minicart extends Cart {
 
   totalPrice() {
     let totalPrice = 0;
-
     this.props.cart.forEach((item) => {
       totalPrice +=
         item.prices.filter(
@@ -25,6 +24,14 @@ export default class Minicart extends Cart {
     return this.props.currencySymbol + parseFloat(totalPrice.toFixed(2));
   }
 
+  totalQty() {
+    let totalQty = 0;
+    this.props.cart.forEach((item) => {
+      totalQty += item.qty;
+    });
+    return totalQty;
+  }
+
   render() {
     return (
       <div>
@@ -32,8 +39,9 @@ export default class Minicart extends Cart {
           toggle={this.props.toggleMinicart}
           trigger={this.props.showMinicart}
         />
-        <button onClick={this.props.toggleMinicart}>
+        <button className="minicart-icon" onClick={this.props.toggleMinicart}>
           <img src={emptyCartDark} alt="empty-cart" />
+          {this.totalQty() > 0 && <label className="minicart-qty">{this.totalQty()}</label>}
         </button>
         {this.props.showMinicart ? (
           <div className="cart minicart">

@@ -1,6 +1,5 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
-import { ProductsContext } from "./ProductsContext";
 import Minicart from "./Minicart";
 import ClickOutsideWrapper from "./ClickOutsideWrapper";
 import aLogo from "../images/a-logo.svg";
@@ -8,8 +7,6 @@ import aLogo from "../images/a-logo.svg";
 import CurrencyDropdown from "./CurrencyDropdown";
 
 class Navbar extends Component {
-  static contextType = ProductsContext;
-
   constructor(props) {
     super(props);
     this.handleChange = this.handleChange.bind(this);
@@ -17,7 +14,6 @@ class Navbar extends Component {
   }
 
   handleChange(e) {
-    this.context = e.target.innerHTML;
     this.setState(e.target.innerHTML);
   }
 
