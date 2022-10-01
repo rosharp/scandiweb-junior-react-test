@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import emptyCart from "../images/empty-cart.svg";
 import Alert from "./Alert";
+import Overlay from "./Overlay";
 
 class Products extends Component {
   constructor(props) {
@@ -66,8 +67,12 @@ class Products extends Component {
               <Link
                 key={index}
                 to={"/products/" + product.id}
-                className={product.inStock ? "product" : "product out-of-stock"}
+                className="product"
+                style={(!product.inStock) ? {pointerEvents: "none"} : {}}
               >
+
+                {!product.inStock && <div className="product-overlay"><p>Out of stock</p></div>}
+
                 <div>
                   <div className="home-img-container">
                     <img
