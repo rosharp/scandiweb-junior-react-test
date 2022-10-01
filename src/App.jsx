@@ -1,15 +1,16 @@
 import React, { Component } from "react";
-import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Home from "./components/Home";
 import Navbar from "./components/Navbar";
 import Product from "./components/Product";
 import Cart from "./components/Cart";
 import withQuery from "./apollo/data";
-import Overlay from "./components/Overlay";
 
 class App extends Component {
   constructor() {
     super();
+
+    this.setState = this.setState.bind(this);
     this.handleClick = this.handleClick.bind(this);
     this.handleCurrency = this.handleCurrency.bind(this);
     this.toggleCurrency = this.toggleCurrency.bind(this);
@@ -19,7 +20,7 @@ class App extends Component {
     this.onQtyDecrease = this.onQtyDecrease.bind(this);
     this.onCartItemDelete = this.onCartItemDelete.bind(this);
 
-    this.state = {
+    this.state = JSON.parse(window.localStorage.getItem('scandiweb-state')) || {
       category: "all",
       currency: "USD",
       currencySymbol: "$",
@@ -28,6 +29,19 @@ class App extends Component {
       showMessage: false,
       showMinicart: false,
     };
+  }
+
+
+  componentDidUpdate() {
+    window.localStorage.setItem('scandiweb-state', JSON.stringify(this.state));
+    if (this.state.showMessage) {
+      setTimeout(() => this.setState({ showMessage: false }), 5000);
+    }
+  }
+
+  setState(state) {
+    window.localStorage.setItem('scandiweb-state', JSON.stringify({...this.state, state}));
+    super.setState(state);
   }
 
   handleClick(e) {
