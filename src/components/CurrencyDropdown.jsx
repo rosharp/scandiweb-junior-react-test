@@ -7,7 +7,7 @@ class CurrencyDropdown extends Component {
     return (
       <div className="currency-dropdown">
         <button onClick={this.props.toggleCurrency} className="currency-button">
-          <span style={{ fontSize: "18px" }}>$</span>
+          <span style={{ fontSize: "18px" }}>{this.props.currencySymbol}</span>
           <img
             className={
               this.props.showCurrencySwitch

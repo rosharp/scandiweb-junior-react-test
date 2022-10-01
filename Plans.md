@@ -2,3 +2,6 @@
 - plus-minus outline
 - cart image alignment
 - save state on reload
+- quantity in cart fix
+- quantity badge
+- out of stock

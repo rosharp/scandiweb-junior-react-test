@@ -56,6 +56,7 @@ class Navbar extends Component {
             >
               <CurrencyDropdown
                 currency={this.props.currency}
+                currencySymbol={this.props.currencySymbol}
                 setCurrency={this.props.setCurrency}
                 toggleCurrency={this.props.toggleCurrency}
                 showCurrencySwitch={this.props.showCurrencySwitch}
