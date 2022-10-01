@@ -9,6 +9,7 @@ class Cart extends Component {
 
     this.state = {
       cartItems: {},
+      taxPercent: 21,
     };
   }
 
@@ -20,13 +21,33 @@ class Cart extends Component {
           (price) => price.currency.label === this.props.currency
         )[0].amount * item.qty;
     });
-    return this.props.currencySymbol + parseFloat(totalPrice.toFixed(2));
+    return (
+      this.props.currencySymbol +
+      parseFloat(
+        (totalPrice + (totalPrice / 100) * this.state.taxPercent).toFixed(2)
+      )
+    );
+  }
+
+  countTax() {
+    let totalPrice = 0;
+    this.props.cart.forEach((item) => {
+      totalPrice +=
+        item.prices.filter(
+          (price) => price.currency.label === this.props.currency
+        )[0].amount * item.qty;
+    });
+
+    return (
+      this.props.currencySymbol +
+      parseFloat(((totalPrice / 100) * this.state.taxPercent).toFixed(2))
+    );
   }
 
   totalQty() {
     let totalQty = 0;
     this.props.cart.forEach((item) => {
-      totalQty += item.qty
+      totalQty += item.qty;
     });
     return totalQty;
   }
@@ -139,9 +160,18 @@ class Cart extends Component {
         })}
 
         <div id="cart-total" className="cart-total-container">
-          <div><span>Total:</span><b>{this.totalPrice()}</b></div>
-          <div><span>Quantity:</span><b>{this.totalQty()}</b></div>
-          <div><span>Tax 21%:</span>{this.totalPrice()}</div>
+          <div>
+            <span>Total:</span>
+            <b>{this.totalPrice()}</b>
+          </div>
+          <div>
+            <span>Quantity:</span>
+            <b>{this.totalQty()}</b>
+          </div>
+          <div>
+            <span>Tax 21%:</span>
+            {this.countTax()}
+          </div>
         </div>
 
         <button className="button-submit">Order</button>
