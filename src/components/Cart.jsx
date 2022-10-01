@@ -23,6 +23,14 @@ class Cart extends Component {
     return this.props.currencySymbol + parseFloat(totalPrice.toFixed(2));
   }
 
+  totalQty() {
+    let totalQty = 0;
+    this.props.cart.forEach((item) => {
+      totalQty += item.qty
+    });
+    return totalQty;
+  }
+
   componentWillUnmount() {
     this.setState({ images: [] });
   }
@@ -132,7 +140,7 @@ class Cart extends Component {
 
         <div id="cart-total" className="cart-total-container">
           <div><span>Total:</span><b>{this.totalPrice()}</b></div>
-          <div><span>Quantity:</span><b>{this.props.cart.length}</b></div>
+          <div><span>Quantity:</span><b>{this.totalQty()}</b></div>
           <div><span>Tax 21%:</span>{this.totalPrice()}</div>
         </div>
 

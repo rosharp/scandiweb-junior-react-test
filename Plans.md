@@ -5,3 +5,4 @@
 - quantity in cart fix
 - quantity badge
 - out of stock
+- minicart custom slider
