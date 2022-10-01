@@ -97,7 +97,11 @@ export default class Minicart extends Cart {
                                           ></label>
                                         ) : (
                                           <label
-                                            style={{ backgroundColor: i.value }}
+                                            style={{
+                                              backgroundColor: i.value,
+                                              filter:
+                                                "drop-shadow(0 0.2rem 0.1rem rgba(0, 0, 0, 0.1))",
+                                            }}
                                           ></label>
                                         )}
                                       </div>
