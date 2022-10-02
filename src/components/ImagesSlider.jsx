@@ -55,7 +55,7 @@ export default class ImagesSlider extends Component {
           src={item.gallery[parseInt(Object.values(this.state.images[index]))]}
           alt="product"
         />
-        {this.props.sliderButtons ? (
+        {this.props.sliderButtons && item.gallery.length > 1 ? (
           <div className="cart-img-btn">
             <button onClick={() => this.handlePrevImg(index, item)}>
               <img src={prev} alt="previous" />
