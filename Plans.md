@@ -2,5 +2,5 @@
 - plus-minus outline
 - cart image alignment
 - minicart custom slider
-- react parser
 - minicart totalQty fix
+- remove slider buttons if there is less than 2 img

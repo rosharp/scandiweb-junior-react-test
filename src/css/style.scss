@@ -21,28 +21,51 @@ $c-black: #1d1f22;
   box-sizing: border-box;
 }
 
+  ::-webkit-scrollbar {
+    width: 20px;
+  }
+  ::-webkit-scrollbar-track {
+    background-color: transparent;
+  }
+  ::-webkit-scrollbar-thumb {
+    background-color: $clr-neutral-110;
+  }
+  ::-webkit-scrollbar-thumb {
+    background-color: $clr-neutral-110;
+    border-radius: 20px;
+  }
+  ::-webkit-scrollbar-thumb {
+    background-color: #d6dee1;
+    border-radius: 20px;
+    border: 6px solid transparent;
+    background-clip: content-box;
+  }
+  ::-webkit-scrollbar-thumb:hover {
+    background-color: #a8bbbf;
+  }
+
 @keyframes moveToTop {
-    0% {
-       transform: translate(-50%, 120%);
-     }
-    20% {
-       transform: translate(-50%, -50%);
-    }
-    50% {
-       transform: translate(-50%, -50%);
-    }
-    80% {
-       transform: translate(-50%, -50%);
-    }
-    100% {
-       transform: translate(-50%, 120%);
-    }
+  0% {
+    transform: translate(-50%, 120%);
+  }
+  20% {
+    transform: translate(-50%, -50%);
+  }
+  50% {
+    transform: translate(-50%, -50%);
+  }
+  80% {
+    transform: translate(-50%, -50%);
+  }
+  100% {
+    transform: translate(-50%, 120%);
+  }
 }
 
-html, body {
+html,
+body {
   height: 100%;
 }
-
 
 a,
 h1,
@@ -95,7 +118,6 @@ label {
   flex: none;
 }
 
-
 body {
   position: relative;
   background-color: $clr-neutral-110;
@@ -125,7 +147,7 @@ nav,
 }
 
 .img-reversed {
- -webkit-transform: scaleY(-1);
+  -webkit-transform: scaleY(-1);
   transform: scaleY(-1);
 }
 
@@ -186,7 +208,7 @@ nav,
   height: 2rem;
 
   img {
-    max-width: .8rem;
+    max-width: 0.8rem;
   }
 }
 
@@ -234,11 +256,11 @@ nav,
 
 .button-outline {
   border: 1px solid $c-black;
-  padding: .5rem;
+  padding: 0.5rem;
   transition: background 250ms ease-in-out;
   background-color: $clr-neutral-100;
   cursor: pointer;
-  
+
   &:hover {
     background-color: $clr-neutral-110;
   }
@@ -246,7 +268,7 @@ nav,
 
 .checkout-btn {
   @extend .button-submit;
-  padding: .5rem 1rem;
+  padding: 0.5rem 1rem;
   cursor: pointer;
 }
 
@@ -255,7 +277,7 @@ nav,
   justify-content: center;
   margin-inline: auto;
   & > * {
-    margin-inline: .4rem;
+    margin-inline: 0.4rem;
   }
   & * {
     cursor: pointer;
@@ -266,7 +288,7 @@ nav,
   transition: 300ms ease-in-out;
   border: none;
   background-color: $clr-accent-300;
-  border-radius: 50%; 
+  border-radius: 50%;
   padding: 1rem;
 }
 
@@ -331,11 +353,11 @@ nav {
       display: flex;
 
       img {
-        max-width: .8rem;
+        max-width: 0.8rem;
       }
 
       & > * {
-        padding-inline: .2rem;
+        padding-inline: 0.2rem;
       }
     }
     .currency-dropdown-list {
@@ -366,61 +388,62 @@ nav {
 }
 
 .minicart {
-     position: absolute;
-     right: 15rem;
-     top: 5rem;
-     z-index: 9999;
-     max-height: 40rem;
-     width: 22rem;
-     padding: 0 1rem 1rem 1rem;
-     overflow: auto;
-     background-color: $clr-neutral-110;
-     filter: drop-shadow(0 0.2rem 0.1rem rgba(0, 0, 0, 0.025));
-     text-transform: none;
+  position: absolute;
+  right: 15rem;
+  top: 5rem;
+  z-index: 9999;
+  max-height: 40rem;
+  width: 22rem;
+  padding: 0 1rem 1rem 1rem;
+  overflow: auto;
+  background-color: $clr-neutral-110;
+  filter: drop-shadow(0 0.2rem 0.1rem rgba(0, 0, 0, 0.025));
+  text-transform: none;
 
+  .cart-chars {
+    max-width: 10rem;
+  }
 
+  .cart-total-container {
+    display: flex;
+    margin-block: 1rem;
 
-     .cart-chars {
-      max-width: 10rem;
-     }
-
-    .cart-total-container {
-      display: flex;
-      margin-block: 1rem;
-
-      span {
-        justify-self: flex-start;
-        margin-inline: auto;
-      }
-
-      b {
-        justify-self: flex-end;
-        margin-inline: auto;
-      }
+    span {
+      justify-self: flex-start;
+      margin-inline: auto;
     }
 
-     h2, h3, h4 {
-      font-size: 16px;
-      line-height: .8;
-     }
+    b {
+      justify-self: flex-end;
+      margin-inline: auto;
+    }
+  }
 
-     h2 > span {
-      font-weight: normal;
-     }
+  h2,
+  h3,
+  h4 {
+    font-size: 16px;
+    line-height: 0.8;
+  }
 
-     p {
-      font-family: $Raleway;
-      font-weight: 500;
-     }
+  h2 > span {
+    font-weight: normal;
+  }
 
-     .button {
-      max-width: 2rem;
-      max-height: 2rem;
+  p {
+    font-family: $Raleway;
+    font-weight: 500;
+  }
 
-      label {
-        font-size: 14px;
-      }
-     }
+  .button {
+    max-width: 2rem;
+    max-height: 2rem;
+
+    label {
+      font-size: 14px;
+    }
+  }
+
 }
 .minicart-icon {
   position: relative;
@@ -446,7 +469,7 @@ nav {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     border-top: 1px solid $clr-neutral-200;
-    padding: 1rem 0 1rem 0; 
+    padding: 1rem 0 1rem 0;
     height: auto;
   }
 
@@ -474,7 +497,7 @@ nav {
       }
 
       & > * {
-        margin-inline: .2rem;
+        margin-inline: 0.2rem;
       }
     }
   }
@@ -485,7 +508,7 @@ nav {
     flex-direction: column;
     justify-content: center;
     margin: auto;
-    
+
     p {
       justify-content: center;
       margin-inline: auto;
@@ -496,14 +519,12 @@ nav {
       justify-content: flex-start;
       margin: auto;
     }
-
   }
-  
+
   #cart-total {
     border-top: 1px solid $clr-neutral-200;
     display: block;
   }
-
 }
 
 .category-title {
@@ -546,8 +567,6 @@ nav {
   img {
     object-fit: cover;
   }
-
-
 }
 
 .product {
@@ -560,29 +579,29 @@ nav {
     margin-top: 1.5rem;
   }
 
-    .home-img-container {
-      position: relative;
-      max-width: 25rem;
-      width: 100%;
-      
-      .empty-cart-btn {
-        opacity: 0;
-        position: absolute;
-        right: 2rem;
-        bottom: -1.5rem;;
+  .home-img-container {
+    position: relative;
+    max-width: 25rem;
+    width: 100%;
 
-        &:hover {
-          background-color: $clr-accent-400;
-          cursor: pointer;
-        }
+    .empty-cart-btn {
+      opacity: 0;
+      position: absolute;
+      right: 2rem;
+      bottom: -1.5rem;
+
+      &:hover {
+        background-color: $clr-accent-400;
+        cursor: pointer;
       }
     }
+  }
 
   &:hover {
     background-color: $clr-neutral-100;
     box-shadow: 0px 4px 35px rgba(168, 172, 176, 0.19);
     transition: 300ms ease-in-out;
-    
+
     .empty-cart-btn {
       opacity: 1;
     }
@@ -612,15 +631,15 @@ nav {
 
   .product-props {
     max-width: 20rem;
-    
+
     label {
       cursor: pointer;
     }
-    
+
     h3 {
       line-height: 0;
     }
-    
+
     .button-submit {
       display: block;
       margin-bottom: 1rem;
@@ -636,15 +655,12 @@ nav {
 }
 
 .product-img-container {
-
-
   display: flex;
   flex-direction: row;
 
   img {
     display: flex;
     background: $clr-neutral-100;
-
   }
 
   .img-active {
