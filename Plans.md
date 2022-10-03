@@ -1,1 +1,0 @@
-- cart image alignment
