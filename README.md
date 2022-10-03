@@ -1,7 +1,5 @@
 # Entry React developer TEST
 
-![Category page](./public/category.png "Category page")
-
 Applicant name: Vitaly Bekshnev
 
 ## Used libraries and modules
