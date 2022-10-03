@@ -164,17 +164,15 @@ class Cart extends Component {
         })}
 
         <div id="cart-total" className="cart-total-container">
-          <div>
+          <div className="float-child">
             <span>Total:</span>
-            <b>{this.totalPrice()}</b>
-          </div>
-          <div>
             <span>Quantity:</span>
-            <b>{this.totalQty()}</b>
-          </div>
-          <div>
             <span>Tax 21%:</span>
-            {this.countTax()}
+          </div>
+          <div className="float-child">
+            <b>{this.totalPrice()}</b>
+            <b>{this.totalQty()}</b>
+            <b>{this.countTax()}</b>
           </div>
         </div>
 

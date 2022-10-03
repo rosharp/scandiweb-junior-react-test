@@ -153,8 +153,8 @@ export default class Minicart extends Cart {
               );
             })}
 
-            <div className="cart-total-container">
-              <span>Total:</span>
+            <div id="minicart-total" className="cart-total-container">
+              <span>Total</span>
               <b>{this.totalPrice()}</b>
             </div>
             <div className="button-container">
