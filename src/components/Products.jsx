@@ -87,6 +87,7 @@ class Products extends Component {
                       <img src={emptyCart} alt="cart" />
                     </button>
                   </div>
+                  <div className="product-subtext">
                   <h3>{product.name}</h3>
                   {product.prices
                     .filter(
@@ -100,6 +101,7 @@ class Products extends Component {
                         </label>
                       );
                     })}
+                  </div>
                 </div>
                 {this.props.showMessage ? <Alert /> : null}
               </Link>

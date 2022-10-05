@@ -276,8 +276,13 @@ nav,
   justify-content: center;
   margin-inline: auto;
 }
-.button-container > * {
-  margin-inline: 0.4rem;
+.button-container .button-outline {
+  justify-content: flex-start;
+  margin-inline: auto;
+}
+.button-container .checkout-btn {
+  justify-content: flex-end;
+  margin-inline: auto;
 }
 .button-container * {
   cursor: pointer;
@@ -329,7 +334,8 @@ nav li > a.active-nav::after {
 }
 nav .a-logo {
   margin-inline: auto;
-  max-width: 2.5em;
+  max-width: 7em;
+  padding-right: 4rem;
 }
 nav .nav-end button {
   border: none;
@@ -345,7 +351,7 @@ nav .currency-dropdown .currency-button img {
   position: absolute;
   max-width: 0.8rem;
   bottom: 0.2rem;
-  right: 0.2rem;
+  right: 0;
 }
 nav .currency-dropdown .currency-button > * {
   padding-inline: 0.2rem;
@@ -412,28 +418,46 @@ nav .currency-dropdown .currency-dropdown-list > * {
 }
 .minicart .button, .minicart .increase-qty,
 .minicart .decrease-qty {
-  max-width: 1.75rem;
+  width: 1.75rem;
+  max-width: 2rem;
   max-height: 1.75rem;
 }
 .minicart .button label, .minicart .increase-qty label,
 .minicart .decrease-qty label {
-  font-size: 16px;
+  font-size: 15px;
+  line-height: 1.5;
 }
 .minicart .checkout-btn > * {
   color: white;
 }
 .minicart .cart-total-container {
-  display: flex;
+  display: relative;
+  margin-block: 1rem;
 }
 .minicart .cart-total-container span {
-  align-self: flex-start;
-  margin: auto;
-  text-align: left;
+  position: absolute;
+  left: 1rem;
 }
 .minicart .cart-total-container b {
-  align-self: flex-end;
-  margin: auto;
-  text-align: right;
+  position: absolute;
+  right: 1rem;
+}
+.minicart .button-container {
+  position: relative;
+  margin-bottom: 2rem;
+}
+.minicart .button-container .button-outline {
+  padding: 0.5rem 0.8rem;
+  position: absolute;
+  left: 0;
+}
+.minicart .button-container .checkout-btn {
+  position: absolute;
+  padding: 0.55rem 0.8rem;
+  right: 0;
+}
+.minicart .button-container * {
+  text-transform: uppercase;
 }
 
 .minicart-icon {
@@ -524,6 +548,7 @@ nav .currency-dropdown .currency-dropdown-list > * {
 }
 
 .category-title {
+  margin-block: 3rem;
   text-transform: capitalize;
 }
 
@@ -662,8 +687,8 @@ nav .currency-dropdown .currency-dropdown-list > * {
     grid-template-columns: repeat(2, 1fr);
   }
   .product-img-home {
-    width: clamp(5rem, 35vw, 18rem);
-    height: clamp(5rem, 45vh, 18rem);
+    width: clamp(5rem, 45vw, 22rem);
+    height: clamp(5rem, 55vh, 22rem);
     display: flex;
     justify-self: center;
     margin: 0 auto;
