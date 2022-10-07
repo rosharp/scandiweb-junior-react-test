@@ -546,6 +546,9 @@ nav .currency-dropdown .currency-dropdown-list > * {
 .cart .cart-total-container .float-child > * {
   display: block;
 }
+.cart #cart-submit {
+  margin-bottom: 5rem;
+}
 
 .category-title {
   margin-block: 3rem;

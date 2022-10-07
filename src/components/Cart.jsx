@@ -176,7 +176,7 @@ class Cart extends Component {
           </div>
         </div>
 
-        <button className="button-submit">Order</button>
+        <button id="cart-submit" className="button-submit">Order</button>
       </div>
     );
   }
