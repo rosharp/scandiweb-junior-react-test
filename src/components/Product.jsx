@@ -81,7 +81,7 @@ class Product extends Component {
   render() {
     return (
       <div className="product-container">
-       <ProductImg gallery={this.props.gallery} /> 
+        <ProductImg gallery={this.props.gallery} />
 
         <div className="product-props">
           <h1>{this.props.brand}</h1>
@@ -121,7 +121,7 @@ class Product extends Component {
                 .map((att) => att.name + ":")}
             </h3>
             {this.props.attributes
-              .filter((att) =>  att.name === "Capacity")
+              .filter((att) => att.name === "Capacity")
               .map((att) =>
                 att.items.map((att) => {
                   return (
@@ -163,8 +163,14 @@ class Product extends Component {
                           onChange={this.handleColor}
 
                         />
-                        <label htmlFor={`color-${att.id}`} style={{ backgroundColor: `${att.value}`}}></label>
-                          
+                        <label
+                          htmlFor={`color-${att.id}`}
+                          style={{
+                            backgroundColor: `${att.value}`,
+                            filter: "drop-shadow(0 0.2rem 0.1rem rgba(0, 0, 0, 0.1))"
+                          }}>
+                        </label>
+
                       </div>
                     </div>
                   );
@@ -232,21 +238,21 @@ class Product extends Component {
             .filter((price) => price.currency.label === this.props.currency)
             .map((price, index) => {
               return (
-              <div key={index}>
-                <h3>Price:</h3>
-                <p key={index} className="price-tag">
-                  <span>{price.currency.symbol}</span>
-                  {parseFloat(price.amount)}
-                </p>
-              </div>
+                <div key={index}>
+                  <h3>Price:</h3>
+                  <p key={index} className="price-tag">
+                    <span>{price.currency.symbol}</span>
+                    {parseFloat(price.amount)}
+                  </p>
+                </div>
               );
             })}
 
 
 
-          <button 
-            onClick={() => this.setState({ index: this.randomIndex() }) 
-              & this.props.onAdd(this.state)} 
+          <button
+            onClick={() => this.setState({ index: this.randomIndex() })
+              & this.props.onAdd(this.state)}
             className="button-submit"
           >
             Add To Cart
@@ -254,7 +260,7 @@ class Product extends Component {
 
           {parse(this.props.description)}
         </div>
-          { this.props.showMessage ? <Alert /> : null }
+        {this.props.showMessage ? <Alert /> : null}
       </div>
     );
   }

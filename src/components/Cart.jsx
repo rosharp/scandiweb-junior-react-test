@@ -82,7 +82,7 @@ class Cart extends Component {
                 {Object.entries(item.chars).map(([char, value], index) => {
                   return (
                     <div key={index}>
-                      <h4>{char}:</h4>
+                      <h4 className="cart-char">{char}:</h4>
                       <div style={{ display: "flex" }}>
                         {item.attributes
                           .filter((att) => att.name === char)[0]
