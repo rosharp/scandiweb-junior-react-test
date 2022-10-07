@@ -391,6 +391,9 @@ nav .currency-dropdown .currency-dropdown-list > * {
   filter: drop-shadow(0 0.2rem 0.1rem rgba(0, 0, 0, 0.025));
   text-transform: none;
 }
+.minicart .cart-items-container {
+  grid-template-columns: repeat(3, 1fr);
+}
 .minicart .cart-chars {
   width: 8rem;
 }
@@ -431,7 +434,7 @@ nav .currency-dropdown .currency-dropdown-list > * {
   color: white;
 }
 .minicart .cart-total-container {
-  display: relative;
+  display: grid;
   margin-block: 1rem;
 }
 .minicart .cart-total-container span {
@@ -479,7 +482,6 @@ nav .currency-dropdown .currency-dropdown-list > * {
 
 .cart .cart-items-container {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
   border-top: 1px solid #e5e5e5;
   padding: 1rem 0 1rem 0;
 }
@@ -495,6 +497,14 @@ nav .currency-dropdown .currency-dropdown-list > * {
 .cart .cart-items-container .cart-chars .cart-char {
   text-transform: uppercase;
   font-size: 1rem;
+}
+.cart #cart-items-container {
+  grid-template-columns: repeat(2, 1fr);
+}
+.cart .cart-right-container {
+  display: flex;
+  position: relative;
+  justify-content: flex-end;
 }
 .cart .cart-img-container {
   position: relative;
@@ -523,7 +533,9 @@ nav .currency-dropdown .currency-dropdown-list > * {
 }
 .cart .qty-container {
   display: flex;
+  position: relative;
   flex-direction: column;
+  margin-inline: auto;
 }
 .cart .qty-container p {
   justify-self: center;

@@ -416,6 +416,9 @@ nav {
   filter: drop-shadow(0 0.2rem 0.1rem rgba(0, 0, 0, 0.025));
   text-transform: none;
 
+  .cart-items-container {
+    grid-template-columns: repeat(3, 1fr);
+  }
 
   .cart-chars {
     width: 8rem;
@@ -464,7 +467,7 @@ nav {
   }
 
   .cart-total-container {
-    display: relative;
+    display: grid;
     margin-block: 1rem;
     span {
       position: absolute;
@@ -521,7 +524,6 @@ nav {
 .cart {
   .cart-items-container {
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
     border-top: 1px solid $clr-neutral-200;
     padding: 1rem 0 1rem 0;
 
@@ -540,6 +542,16 @@ nav {
         font-size: 1rem;
       }
     }
+  }
+
+  #cart-items-container {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .cart-right-container {
+    display: flex;
+    position: relative;
+    justify-content: flex-end;
   }
 
   .cart-img-container {
@@ -574,7 +586,9 @@ nav {
 
   .qty-container {
     display: flex;
+    position: relative;
     flex-direction: column;
+    margin-inline: auto;
 
     p {
       justify-self: center;

@@ -62,7 +62,7 @@ class Cart extends Component {
         <h1>Cart</h1>
         {this.props.cart.map((item, index) => {
           return (
-            <div key={index} className="cart-items-container">
+            <div key={index} id="cart-items-container" className="cart-items-container">
               <div className="cart-chars">
                 <h2>{item.brand}</h2>
                 <h3>{item.name}</h3>
@@ -132,7 +132,7 @@ class Cart extends Component {
                   );
                 })}
               </div>
-
+              <div className="cart-right-container">
               <div className="qty-container">
                 <button
                   className="increase-qty"
@@ -159,6 +159,7 @@ class Cart extends Component {
                 cart={this.props.cart}
                 sliderButtons={true}
               />
+              </div>
             </div>
           );
         })}
