@@ -123,7 +123,7 @@ export default class Minicart extends Cart {
                     })}
                   </div>
 
-                  <div className="qty-container">
+                  <div className="qty-container" id="qty-container-minicart">
                     <button
                       className="increase-qty"
                       onClick={() => this.props.onQtyIncrease(item)}

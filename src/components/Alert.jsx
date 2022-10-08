@@ -1,3 +1,4 @@
+import { isNetworkRequestInFlight } from '@apollo/client/core/networkStatus'
 import { Component } from 'react'
 
 class Alert extends Component {
@@ -9,6 +10,7 @@ class Alert extends Component {
         bottom: ".5rem",
         transform: "translate(-50%, 120%)",
         left: "50%",
+        marginRight: "2rem",
         padding: ".7rem 2rem",
         borderRadius: "10px",
         backgroundColor: "#5ece7b",

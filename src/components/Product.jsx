@@ -238,9 +238,9 @@ class Product extends Component {
             .filter((price) => price.currency.label === this.props.currency)
             .map((price, index) => {
               return (
-                <div key={index}>
+                <div key={index} className="price-tag-container" id="product-price-tag-container">
                   <h3>Price:</h3>
-                  <p key={index} className="price-tag">
+                  <p key={index} className="price-tag" id="product-price-tag">
                     <span>{price.currency.symbol}</span>
                     {parseFloat(price.amount)}
                   </p>
@@ -254,11 +254,15 @@ class Product extends Component {
             onClick={() => this.setState({ index: this.randomIndex() })
               & this.props.onAdd(this.state)}
             className="button-submit"
+            id="product-submit"
           >
             Add To Cart
           </button>
 
-          {parse(this.props.description)}
+          <div className="product-description">
+            {parse(this.props.description)}
+          </div>
+
         </div>
         {this.props.showMessage ? <Alert /> : null}
       </div>

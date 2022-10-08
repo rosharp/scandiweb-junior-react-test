@@ -22,27 +22,29 @@ class Navbar extends Component {
 
     return (
       <nav>
-        {data.categories.map((item, index) => {
-          return (
-            <ul key={index}>
-              <li>
-                <Link
-                  key={index}
-                  to="/"
-                  value={item.name}
-                  onClick={this.props.setCategory}
-                  className={
-                    this.props.category === item.name ? "active-nav" : ""
-                  }
-                >
-                  {item.name}
-                </Link>
-              </li>
-            </ul>
-          );
-        })}
+        <div className="nav-left">
+          {data.categories.map((item, index) => {
+            return (
+              <ul key={index}>
+                <li>
+                  <Link
+                    key={index}
+                    to="/"
+                    value={item.name}
+                    onClick={this.props.setCategory}
+                    className={
+                      this.props.category === item.name ? "active-nav" : ""
+                    }
+                  >
+                    {item.name}
+                  </Link>
+                </li>
+              </ul>
+            );
+          })}
+        </div>
 
-        <img className="a-logo" src={aLogo} alt="a-logo"/>
+        <img className="a-logo" src={aLogo} alt="a-logo" />
 
         <ul className="nav-end">
           <li>
@@ -62,8 +64,8 @@ class Navbar extends Component {
           </li>
           <li>
             <ClickOutsideWrapper
-                method={this.props.toggleMinicart}
-                status={this.props.showMinicart}
+              method={this.props.toggleMinicart}
+              status={this.props.showMinicart}
             >
               <Minicart
                 currency={this.props.currency}

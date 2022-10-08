@@ -133,7 +133,7 @@ class Cart extends Component {
                 })}
               </div>
               <div className="cart-right-container">
-              <div className="qty-container">
+              <div className="qty-container" id="qty-container-cart">
                 <button
                   className="increase-qty"
                   onClick={() => this.props.onQtyIncrease(item)}
