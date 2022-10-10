@@ -311,10 +311,6 @@ nav {
   padding-top: 1rem;
   height: 5rem;
 }
-nav ul > * {
-  padding: 0;
-  margin-inline: 1rem;
-}
 nav li {
   list-style-type: none;
   display: inline-block;
@@ -369,6 +365,7 @@ nav .nav-end button {
 }
 nav .currency-dropdown .currency-button {
   position: relative;
+  margin-right: 2rem;
   width: 3rem;
 }
 nav .currency-dropdown .currency-button img {
@@ -388,7 +385,7 @@ nav .currency-dropdown .currency-dropdown-list {
   flex-direction: column;
   background-color: #ffffff;
   list-style: none;
-  padding-inline-start: 0;
+  padding: 0;
   z-index: 9997;
 }
 nav .currency-dropdown .currency-dropdown-list li:hover {
